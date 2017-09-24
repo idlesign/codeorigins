@@ -14,18 +14,49 @@ https://github.com/idlesign/codeorigins
     :target: https://pypi.python.org/pypi/codeorigins
 
 
+**Work in progress. Stay tuned.**
+
+
 Description
 -----------
 
 *Code origins contest based on GitHub data*
 
-Here will be an introductory description.
+* Find interesting people and projects originating in various countries;
+* See what countries produce most starred projects;
+* Know your impact on community of your favourite language;
+* and more.
 
 
+Requirements
+------------
 
-Documentation
--------------
+* Python 3
 
-http://codeorigins.readthedocs.org/
 
+CLI
+---
+
+**Dumper**
+
+Using rate-limited GitHub search API:
+
+
+.. code-block:: bash
+
+    > codeorigins dump --into /home/idle/ghdump --country ru --language Python api
+
+This will use `api` to fetch repositories data for users located in `Russia` whose primary language is `Python`
+and dump it into `/home/idle/ghdump`.
+
+`Register OAuth App<https://github.com/settings/applications/>`_ and use its *Client ID* and
+*Client Secret* to loosen the rate limits (append `--credentials <id>,<secret>` to dump command).
+
+
+**Settings**
+
+See supported countries and languages using the following command:
+
+.. code-block:: bash
+    > codeorigins show_settings
 

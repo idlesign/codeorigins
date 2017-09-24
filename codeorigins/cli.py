@@ -1,24 +1,78 @@
-import sys
-import argparse
+import click
+
+from codeorigins import VERSION
+from codeorigins.utils import dump as dump_data
+from codeorigins.fetchers import FETCHERS
+from codeorigins.settings import COUNTRIES, LANGUAGES
+
+
+if False:  # pragma: nocover
+    from codeorigins.fetchers.base import Fetcher
+
+
+def fetcher_dump(fetcher_alias, credentials, into, country, language, totals_only):
+    fetcher = FETCHERS[fetcher_alias](credentials)  # type: Fetcher
+
+    results = fetcher.run(
+        languages=[language] if language else None,
+        countries=[country] if country else None,
+        totals_only=totals_only)
+
+    dump_data(results, dump_dir=into)
+
+
+@click.group()
+@click.version_option(version='.'.join(map(str, VERSION)))
+def base():
+    """codeorigins command line utility."""
+
+
+@base.group()
+@click.option(
+    '--into', help='Directory to store dumps into.', type=click.Path(exists=True, file_okay=False))
+@click.option('--country', help='Country to dump.', type=click.Choice(COUNTRIES.keys()))
+@click.option('--language', help='Language to dump.', type=click.Choice(LANGUAGES.keys()))
+@click.option('--totals_only', help='Don\'t fetch stats. Only log total users.', is_flag=True)
+@click.pass_context
+def dump(ctx, into, country, language, totals_only):
+    """Dumps statistics from GitHub using the given fetcher."""
+    ctx.obj['into'] = into
+    ctx.obj['country'] = country
+    ctx.obj['language'] = language
+    ctx.obj['totals_only'] = totals_only
+
+
+@dump.command()
+@click.option('--credentials', help='GitHub client credentials: <client_id>,<client_secret>')
+@click.pass_context
+def api(ctx, credentials):
+    """Fetch stats using API methods."""
+
+    credentials = credentials.split(',', 1) if credentials else (None, None)
+    ctx = ctx.obj
+    fetcher_dump(
+        'api', credentials, ctx['into'],
+        ctx['country'], ctx['language'],
+        totals_only=ctx['totals_only'])
+
+
+@base.command()
+def show_settings():
+    """Prints out basic settings."""
+
+    click.secho('Countries:', fg='green')
+    click.secho(', '.join(COUNTRIES.keys()))
+
+    click.secho('Languages:', fg='green')
+    click.secho(', '.join(LANGUAGES.keys()))
 
 
 def main():
+    """
+    CLI entry point.
+    """
+    base(obj={})
 
-    arg_parser = argparse.ArgumentParser(prog='codeorigins', description='Code origins contest based on GitHub data')
-    arg_parser.add_argument('--version', action='version', version='.'.join(map(str, VERSION)))
 
-    arg_parser.add_argument('arg1', help='arg1 help')
-    arg_parser.add_argument('--opt', help='optional arg help', action='store_true', default=False)
-
-    # subparsers = arg_parser.add_subparsers(dest='my_subparsers')
-    # subcommand_parser = subparsers.add_parser('subcommand', help='subcommand help')
-
-    parsed_args = arg_parser.parse_args()
-    # parsed_args = vars(parsed_args)  # Convert args to dict
-    # subparsed_args = parsed_args['subparsers']
-
-    # Logic goes here.
-    # if parsed_args['opt']:
-
-    sys.exit(1)
-
+if __name__ == '__main__':
+    main()
