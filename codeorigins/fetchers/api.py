@@ -3,7 +3,8 @@ from time import time, sleep
 import requests
 
 from ..utils import LOG
-from .base import User, Repository, Fetcher
+from .base import Fetcher
+from ..common import User, Repository
 
 
 class Client:

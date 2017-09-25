@@ -1,11 +1,5 @@
-from collections import namedtuple
-
 from ..settings import COUNTRIES, LANGUAGES, MIN_STARS, MIN_FOLLOWERS
 from ..utils import logtime
-
-
-Repository = namedtuple('Repository', ['name', 'url', 'description', 'stars'])
-User = namedtuple('User', ['type', 'name', 'avatar', 'repos'])
 
 
 class Fetcher:

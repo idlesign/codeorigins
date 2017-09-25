@@ -1,7 +1,8 @@
 import click
 
 from codeorigins import VERSION
-from codeorigins.utils import dump as dump_data
+from codeorigins.utils import Dump
+from codeorigins.composer import HtmlComposer
 from codeorigins.fetchers import FETCHERS
 from codeorigins.settings import COUNTRIES, LANGUAGES
 
@@ -18,7 +19,7 @@ def fetcher_dump(fetcher_alias, credentials, into, country, language, totals_onl
         countries=[country] if country else None,
         totals_only=totals_only)
 
-    dump_data(results, dump_dir=into)
+    Dump.write(results, dump_dir=into)
 
 
 @click.group()
@@ -40,6 +41,17 @@ def dump(ctx, into, country, language, totals_only):
     ctx.obj['country'] = country
     ctx.obj['language'] = language
     ctx.obj['totals_only'] = totals_only
+
+
+@base.command()
+@click.option(
+    '--dump_dir', help='Directory to read dump from.', type=click.Path(exists=True, file_okay=False))
+@click.option(
+    '--html_dir', help='Directory to store HTML into. Current working dir if not set.',
+    type=click.Path(exists=True, file_okay=False))
+def make_html(dump_dir, html_dir):
+    data = Dump.read(dump_dir)
+    HtmlComposer(data).make_html(html_dir)
 
 
 @dump.command()
