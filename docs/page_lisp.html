@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>CodeOrigins Contest</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <style>
+        .flag{display:inline-block;width:16px;height:11px;background:url('https://media.flag-sprites.com/veowpp/flags.png') no-repeat}.flag.flag-ua{background-position:-128px -154px}.flag.flag-py{background-position:-144px -121px}.flag.flag-az{background-position:-240px 0}.flag.flag-us{background-position:-176px -154px}.flag.flag-pf{background-position:-224px -110px}.flag.flag-ge{background-position:-208px -44px}.flag.flag-gi{background-position:-16px -55px}.flag.flag-mm{background-position:-16px -99px}.flag.flag-kg{background-position:-48px -77px}.flag.flag-kn{background-position:-112px -77px}.flag.flag-mu{background-position:-144px -99px}.flag.flag-ec{background-position:-176px -33px}.flag.flag-hk{background-position:-208px -55px}.flag.flag-io{background-position:-144px -66px}.flag.flag-bo{background-position:-176px -11px}.flag.flag-ck{background-position:-160px -22px}.flag.flag-ht{background-position:-16px -66px}.flag.flag-gf{background-position:-224px -44px}.flag.flag-iq{background-position:-160px -66px}.flag.flag-jo{background-position:0 -77px}.flag.flag-um{background-position:-160px -154px}.flag.flag-eu{background-position:-48px -44px}.flag.flag-mn{background-position:-32px -99px}.flag.flag-ad{background-position:0 0}.flag.flag-tg{background-position:-160px -143px}.flag.flag-tl{background-position:-240px -143px}.flag.flag-ch{background-position:-128px -22px}.flag.flag-pk{background-position:-16px -121px}.flag.flag-ru{background-position:-224px -121px}.flag.flag-ss{background-position:-16px -143px}.flag.flag-gh{background-position:0 -55px}.flag.flag-gq{background-position:-96px -55px}.flag.flag-me{background-position:-192px -88px}.flag.flag-kp{background-position:-128px -77px}.flag.flag-tr{background-position:-48px -154px}.flag.flag-lr{background-position:-48px -88px}.flag.flag-ba{background-position:0 -11px}.flag.flag-cl{background-position:-176px -22px}.flag.flag-sj{background-position:-144px -132px}.flag.flag-kurdistan{background-position:-160px -77px}.flag.flag-sm{background-position:-192px -132px}.flag.flag-sk{background-position:-160px -132px}.flag.flag-ar{background-position:-144px 0}.flag.flag-sz{background-position:-96px -143px}.flag.flag-tibet{background-position:-192px -143px}.flag.flag-dm{background-position:-128px -33px}.flag.flag-xk{background-position:-128px -165px}.flag.flag-ao{background-position:-128px 0}.flag.flag-ng{background-position:-48px -110px}.flag.flag-fr{background-position:-144px -44px}.flag.flag-lv{background-position:-112px -88px}.flag.flag-pn{background-position:-64px -121px}.flag.flag-cd{background-position:-80px -22px}.flag.flag-cu{background-position:0 -33px}.flag.flag-nc{background-position:0 -110px}.flag.flag-mv{background-position:-160px -99px}.flag.flag-eg{background-position:-208px -33px}.flag.flag-mw{background-position:-176px -99px}.flag.flag-tf{background-position:-144px -143px}.flag.flag-nr{background-position:-128px -110px}.flag.flag-ws{background-position:-112px -165px}.flag.flag-kr{background-position:-144px -77px}.flag.flag-sd{background-position:-64px -132px}.flag.flag-mo{background-position:-48px -99px}.flag.flag-rs{background-position:-208px -121px}.flag.flag-er{background-position:0 -44px}.flag.flag-fo{background-position:-128px -44px}.flag.flag-fj{background-position:-80px -44px}.flag.flag-al{background-position:-80px 0}.flag.flag-bg{background-position:-80px -11px}.flag.flag-je{background-position:-224px -66px}.flag.flag-mp{background-position:-64px -99px}.flag.flag-tj{background-position:-208px -143px}.flag.flag-somaliland{background-position:-240px -132px}.flag.flag-bj{background-position:-128px -11px}.flag.flag-gw{background-position:-176px -55px}.flag.flag-cy{background-position:-48px -33px}.flag.flag-ai{background-position:-64px 0}.flag.flag-jm{background-position:-240px -66px}.flag.flag-an{background-position:-112px 0}.flag.flag-et{background-position:-32px -44px}.flag.flag-mr{background-position:-96px -99px}.flag.flag-gn{background-position:-64px -55px}.flag.flag-tz{background-position:-112px -154px}.flag.flag-pw{background-position:-128px -121px}.flag.flag-si{background-position:-128px -132px}.flag.flag-tn{background-position:-16px -154px}.flag.flag-pt{background-position:-112px -121px}.flag.flag-gt{background-position:-144px -55px}.flag.flag-ni{background-position:-64px -110px}.flag.flag-wales{background-position:-80px -165px}.flag.flag-mg{background-position:-208px -88px}.flag.flag-ki{background-position:-80px -77px}.flag.flag-ms{background-position:-112px -99px}.flag.flag-nz{background-position:-160px -110px}.flag.flag-vu{background-position:-64px -165px}.flag.flag-yt{background-position:-160px -165px}.flag.flag-th{background-position:-176px -143px}.flag.flag-sc{background-position:-32px -132px}.flag.flag-mk{background-position:-240px -88px}.flag.flag-ca{background-position:-48px -22px}.flag.flag-ci{background-position:-144px -22px}.flag.flag-ic{background-position:-48px -66px}.flag.flag-ph{background-position:0 -121px}.flag.flag-na{background-position:-240px -99px}.flag.flag-za{background-position:-176px -165px}.flag.flag-de{background-position:-80px -33px}.flag.flag-sl{background-position:-176px -132px}.flag.flag-br{background-position:-192px -11px}.flag.flag-catalonia{background-position:-64px -22px}.flag.flag-as{background-position:-160px 0}.flag.flag-cf{background-position:-96px -22px}.flag.flag-zm{background-position:-208px -165px}.flag.flag-km{background-position:-96px -77px}.flag.flag-tc{background-position:-112px -143px}.flag.flag-bf{background-position:-64px -11px}.flag.flag-im{background-position:-112px -66px}.flag.flag-va{background-position:-224px -154px}.flag.flag-np{background-position:-112px -110px}.flag.flag-bs{background-position:-208px -11px}.flag.flag-mz{background-position:-224px -99px}.flag.flag-lu{background-position:-96px -88px}.flag.flag-ly{background-position:-128px -88px}.flag.flag-scotland{background-position:-48px -132px}.flag.flag-do{background-position:-144px -33px}.flag.flag-pm{background-position:-48px -121px}.flag.flag-id{background-position:-64px -66px}.flag.flag-ae{background-position:-16px 0}.flag.flag-vc{background-position:-240px -154px}.flag.flag-hr{background-position:0 -66px}.flag.flag-ps{background-position:-96px -121px}.flag.flag-am{background-position:-96px 0}.flag.flag-ne{background-position:-16px -110px}.flag.flag-nu{background-position:-144px -110px}.flag.flag-uy{background-position:-192px -154px}.flag.flag-mh{background-position:-224px -88px}.flag.flag-kw{background-position:-176px -77px}.flag.flag-ml{background-position:0 -99px}.flag.flag-gu{background-position:-160px -55px}.flag.flag-sg{background-position:-96px -132px}.flag.flag-mt{background-position:-128px -99px}.flag.flag-co{background-position:-224px -22px}.flag.flag-tk{background-position:-224px -143px}.flag.flag-to{background-position:-32px -154px}.flag.flag-ir{background-position:-176px -66px}.flag.flag-om{background-position:-176px -110px}.flag.flag-mx{background-position:-192px -99px}.flag.flag-ve{background-position:0 -165px}.flag.flag-cg{background-position:-112px -22px}.flag.flag-sy{background-position:-80px -143px}.flag.flag-nf{background-position:-32px -110px}.flag.flag-zw{background-position:-224px -165px}.flag.flag-tt{background-position:-64px -154px}.flag.flag-gm{background-position:-48px -55px}.flag.flag-vg{background-position:-16px -165px}.flag.flag-af{background-position:-32px 0}.flag.flag-ag{background-position:-48px 0}.flag.flag-gs{background-position:-128px -55px}.flag.flag-ls{background-position:-64px -88px}.flag.flag-no{background-position:-96px -110px}.flag.flag-sh{background-position:-112px -132px}.flag.flag-pa{background-position:-192px -110px}.flag.flag-sn{background-position:-208px -132px}.flag.flag-au{background-position:-192px 0}.flag.flag-bt{background-position:-224px -11px}.flag.flag-sv{background-position:-48px -143px}.flag.flag-ye{background-position:-144px -165px}.flag.flag-mc{background-position:-160px -88px}.flag.flag-hn{background-position:-240px -55px}.flag.flag-is{background-position:-192px -66px}.flag.flag-la{background-position:-224px -77px}.flag.flag-tv{background-position:-80px -154px}.flag.flag-lk{background-position:-32px -88px}.flag.flag-ee{background-position:-192px -33px}.flag.flag-bi{background-position:-112px -11px}.flag.flag-lb{background-position:-240px -77px}.flag.flag-vn{background-position:-48px -165px}.flag.flag-eh{background-position:-224px -33px}.flag.flag-rw{background-position:-240px -121px}.flag.flag-ie{background-position:-80px -66px}.flag.flag-bm{background-position:-144px -11px}.flag.flag-ma{background-position:-144px -88px}.flag.flag-dz{background-position:-160px -33px}.flag.flag-cr{background-position:-240px -22px}.flag.flag-dk{background-position:-112px -33px}.flag.flag-sb{background-position:-16px -132px}.flag.flag-jp{background-position:-16px -77px}.flag.flag-td{background-position:-128px -143px}.flag.flag-ro{background-position:-192px -121px}.flag.flag-tm{background-position:0 -154px}.flag.flag-my{background-position:-208px -99px}.flag.flag-ax{background-position:-224px 0}.flag.flag-gp{background-position:-80px -55px}.flag.flag-nl{background-position:-80px -110px}.flag.flag-gg{background-position:-240px -44px}.flag.flag-bb{background-position:-16px -11px}.flag.flag-ug{background-position:-144px -154px}.flag.flag-fm{background-position:-112px -44px}.flag.flag-gy{background-position:-192px -55px}.flag.flag-pg{background-position:-240px -110px}.flag.flag-bz{background-position:-32px -22px}.flag.flag-bh{background-position:-96px -11px}.flag.flag-zanzibar{background-position:-192px -165px}.flag.flag-pe{background-position:-208px -110px}.flag.flag-ky{background-position:-192px -77px}.flag.flag-tw{background-position:-96px -154px}.flag.flag-es{background-position:-16px -44px}.flag.flag-kh{background-position:-64px -77px}.flag.flag-england{background-position:-240px -33px}.flag.flag-lt{background-position:-80px -88px}.flag.flag-bv{background-position:-240px -11px}.flag.flag-mq{background-position:-80px -99px}.flag.flag-sa{background-position:0 -132px}.flag.flag-so{background-position:-224px -132px}.flag.flag-qa{background-position:-160px -121px}.flag.flag-bw{background-position:0 -22px}.flag.flag-pl{background-position:-32px -121px}.flag.flag-hm{background-position:-224px -55px}.flag.flag-ga{background-position:-160px -44px}.flag.flag-kz{background-position:-208px -77px}.flag.flag-fi{background-position:-64px -44px}.flag.flag-cw{background-position:-32px -33px}.flag.flag-cn{background-position:-208px -22px}.flag.flag-pr{background-position:-80px -121px}.flag.flag-cm{background-position:-192px -22px}.flag.flag-aw{background-position:-208px 0}.flag.flag-bn{background-position:-160px -11px}.flag.flag-be{background-position:-48px -11px}.flag.flag-cv{background-position:-16px -33px}.flag.flag-il{background-position:-96px -66px}.flag.flag-dj{background-position:-96px -33px}.flag.flag-at{background-position:-176px 0}.flag.flag-gb{background-position:-176px -44px}.flag.flag-sx{background-position:-64px -143px}.flag.flag-se{background-position:-80px -132px}.flag.flag-re{background-position:-176px -121px}.flag.flag-gd{background-position:-192px -44px}.flag.flag-uz{background-position:-208px -154px}.flag.flag-md{background-position:-176px -88px}.flag.flag-by{background-position:-16px -22px}.flag.flag-wf{background-position:-96px -165px}.flag.flag-vi{background-position:-32px -165px}.flag.flag-it{background-position:-208px -66px}.flag.flag-ke{background-position:-32px -77px}.flag.flag-gl{background-position:-32px -55px}.flag.flag-cz{background-position:-64px -33px}.flag.flag-sr{background-position:0 -143px}.flag.flag-li{background-position:-16px -88px}.flag.flag-in{background-position:-128px -66px}.flag.flag-bd{background-position:-32px -11px}.flag.flag-fk{background-position:-96px -44px}.flag.flag-lc{background-position:0 -88px}.flag.flag-gr{background-position:-112px -55px}.flag.flag-st{background-position:-32px -143px}.flag.flag-hu{background-position:-32px -66px}
+    </style>
+
+</head>
+<body>
+    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter46062456 = new Ya.Metrika({ id:46062456, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/46062456" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.hml">CodeOrigins</a>
+
+        <h2 class="navbar-text mr-auto">Lisp</h2>
+
+        <span class="navbar-text mr-3">
+            GitHub based code origins contest
+        </span>
+
+        <div class="ya-share2" data-services="twitter,digg,reddit,vkontakte,facebook,gplus" data-lang="en"></div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="row mt-4">
+
+            <div class="col-2">
+
+                <h3 class="float-left">Users</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top 25 users by number of stargazers."></sup>
+
+                <table class="table table-hover table-sm small">
+                    <thead class="text-muted">
+                        <tr>
+                            <th class="text-center" width="1%">#</th>
+                            <th>Name</th>
+                            <th width="1%"></th>
+                            <th width="1%"></th>
+                            <th class="text-center" width="1%">★</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">1</td>
+                            <td><a href="http://github.com/fukamachi">fukamachi</a></td>
+                            <td><img alt="@fukamachi" src="https://avatars2.githubusercontent.com/u/90570?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">3331</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">2</td>
+                            <td><a href="http://github.com/orthecreedence">orthecreedence</a></td>
+                            <td><img alt="@orthecreedence" src="https://avatars2.githubusercontent.com/u/220134?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">558</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">3</td>
+                            <td><a href="http://github.com/archimag">archimag</a></td>
+                            <td><img alt="@archimag" src="https://avatars0.githubusercontent.com/u/84920?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">425</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">4</td>
+                            <td><a href="http://github.com/vseloved">vseloved</a></td>
+                            <td><img alt="@vseloved" src="https://avatars3.githubusercontent.com/u/126027?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">400</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">5</td>
+                            <td><a href="http://github.com/zkat">zkat</a></td>
+                            <td><img alt="@zkat" src="https://avatars1.githubusercontent.com/u/17535?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">378</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">6</td>
+                            <td><a href="http://github.com/takagi">takagi</a></td>
+                            <td><img alt="@takagi" src="https://avatars3.githubusercontent.com/u/1224375?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">240</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">7</td>
+                            <td><a href="http://github.com/mck-">mck-</a></td>
+                            <td><img alt="@mck-" src="https://avatars2.githubusercontent.com/u/1299380?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">235</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">8</td>
+                            <td><a href="http://github.com/burtonsamograd">burtonsamograd</a></td>
+                            <td><img alt="@burtonsamograd" src="https://avatars2.githubusercontent.com/u/10542632?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">207</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">9</td>
+                            <td><a href="http://github.com/BradWBeer">BradWBeer</a></td>
+                            <td><img alt="@BradWBeer" src="https://avatars0.githubusercontent.com/u/308625?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">200</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">10</td>
+                            <td><a href="http://github.com/slyrus">slyrus</a></td>
+                            <td><img alt="@slyrus" src="https://avatars0.githubusercontent.com/u/327708?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">181</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">11</td>
+                            <td><a href="http://github.com/mtravers">mtravers</a></td>
+                            <td><img alt="@mtravers" src="https://avatars1.githubusercontent.com/u/19027?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">157</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">12</td>
+                            <td><a href="http://github.com/sellout">sellout</a></td>
+                            <td><img alt="@sellout" src="https://avatars2.githubusercontent.com/u/33031?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">138</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">13</td>
+                            <td><a href="http://github.com/gigamonkey">gigamonkey</a></td>
+                            <td><img alt="@gigamonkey" src="https://avatars2.githubusercontent.com/u/250053?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">132</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">14</td>
+                            <td><a href="http://github.com/angavrilov">angavrilov</a></td>
+                            <td><img alt="@angavrilov" src="https://avatars0.githubusercontent.com/u/42666?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">121</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">15</td>
+                            <td><a href="http://github.com/mathematical-systems">mathematical-systems</a></td>
+                            <td><img alt="@mathematical-systems" src="https://avatars0.githubusercontent.com/u/1134769?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">113</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">16</td>
+                            <td><a href="http://github.com/cxxxr">cxxxr</a></td>
+                            <td><img alt="@cxxxr" src="https://avatars1.githubusercontent.com/u/13656378?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">113</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">17</td>
+                            <td><a href="http://github.com/dmitryvk">dmitryvk</a></td>
+                            <td><img alt="@dmitryvk" src="https://avatars1.githubusercontent.com/u/120884?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">91</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">18</td>
+                            <td><a href="http://github.com/mmontone">mmontone</a></td>
+                            <td><img alt="@mmontone" src="https://avatars2.githubusercontent.com/u/436110?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ar" title="Argentina"></span></td>
+                            <td class="text-right text-muted small">83</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">19</td>
+                            <td><a href="http://github.com/slburson">slburson</a></td>
+                            <td><img alt="@slburson" src="https://avatars0.githubusercontent.com/u/652146?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">81</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">20</td>
+                            <td><a href="http://github.com/mbattyani">mbattyani</a></td>
+                            <td><img alt="@mbattyani" src="https://avatars0.githubusercontent.com/u/3339919?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">79</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">21</td>
+                            <td><a href="http://github.com/thezerobit">thezerobit</a></td>
+                            <td><img alt="@thezerobit" src="https://avatars3.githubusercontent.com/u/150292?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">73</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">22</td>
+                            <td><a href="http://github.com/gonzojive">gonzojive</a></td>
+                            <td><img alt="@gonzojive" src="https://avatars0.githubusercontent.com/u/83831?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">71</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">23</td>
+                            <td><a href="http://github.com/sile">sile</a></td>
+                            <td><img alt="@sile" src="https://avatars1.githubusercontent.com/u/181413?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">70</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">24</td>
+                            <td><a href="http://github.com/inaimathi">inaimathi</a></td>
+                            <td><img alt="@inaimathi" src="https://avatars1.githubusercontent.com/u/218377?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">70</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">25</td>
+                            <td><a href="http://github.com/keithj">keithj</a></td>
+                            <td><img alt="@keithj" src="https://avatars1.githubusercontent.com/u/102847?v=4?v=4&s=40" height="20" width="20" class="rounded"></td>
+                            <td><span class="flag flag-uk" title="United Kingdom"></span></td>
+                            <td class="text-right text-muted small">67</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <h3 class="float-left">Repositories</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top 50 repositories by number of stargazers."></sup>
+
+                <table class="table table-hover table-sm">
+                    <thead class="text-muted">
+                        <tr>
+                            <th class="text-center" width="1%">#</th>
+                            <th width="25%">Title</th>
+                            <th>Description</th>
+                            <th width="1%"></th>
+                            <th class="text-center" width="1%">★</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">1</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/clack">clack</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Web application environment for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">632</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">2</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/woo">woo</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">A fast non-blocking HTTP server on top of libev</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">562</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">3</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/caveman">caveman</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Lightweight web application framework for Common Lisp.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">440</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">4</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/fast-http">fast-http</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">A fast HTTP request/response parser for Common Lisp.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">269</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">5</td>
+                            <td>
+                                <a href="https://github.com/archimag/restas">restas</a>
+                                <span class="text-muted small">archimag</span>
+                            </td>
+                            <td class="small">Common Lisp web framework</td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">210</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">6</td>
+                            <td>
+                                <a href="https://github.com/mck-/Open-VRP">Open-VRP</a>
+                                <span class="text-muted small">mck-</span>
+                            </td>
+                            <td class="small">Open-source framework for modeling Vehicle Routing Problems.</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">209</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">7</td>
+                            <td>
+                                <a href="https://github.com/BradWBeer/clinch">clinch</a>
+                                <span class="text-muted small">BradWBeer</span>
+                            </td>
+                            <td class="small">Common Lisp 3D/2D Graphics Engine for OpenGL</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">200</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">8</td>
+                            <td>
+                                <a href="https://github.com/burtonsamograd/sxc">sxc</a>
+                                <span class="text-muted small">burtonsamograd</span>
+                            </td>
+                            <td class="small">sxc is an 'S-Expression C' transpiler for generating C code using macros written in Common Lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">175</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">9</td>
+                            <td>
+                                <a href="https://github.com/orthecreedence/cl-async">cl-async</a>
+                                <span class="text-muted small">orthecreedence</span>
+                            </td>
+                            <td class="small">Asynchronous IO library for Common Lisp.</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">156</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">10</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/prove">prove</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Yet another unit testing framework for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">142</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">11</td>
+                            <td>
+                                <a href="https://github.com/orthecreedence/wookie">wookie</a>
+                                <span class="text-muted small">orthecreedence</span>
+                            </td>
+                            <td class="small">Asynchronous HTTP server in common lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">141</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">12</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/ningle">ningle</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Super micro framework for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">135</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">13</td>
+                            <td>
+                                <a href="https://github.com/vseloved/cl-nlp">cl-nlp</a>
+                                <span class="text-muted small">vseloved</span>
+                            </td>
+                            <td class="small">Common Lisp NLP toolset</td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">114</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">14</td>
+                            <td>
+                                <a href="https://github.com/takagi/cl-cuda">cl-cuda</a>
+                                <span class="text-muted small">takagi</span>
+                            </td>
+                            <td class="small">Cl-cuda is a library to use NVIDIA CUDA in Common Lisp programs.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">113</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">15</td>
+                            <td>
+                                <a href="https://github.com/vseloved/cl-redis">cl-redis</a>
+                                <span class="text-muted small">vseloved</span>
+                            </td>
+                            <td class="small">Redis client for Common Lisp</td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">112</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">16</td>
+                            <td>
+                                <a href="https://github.com/slyrus/opticl">opticl</a>
+                                <span class="text-muted small">slyrus</span>
+                            </td>
+                            <td class="small">An image processing library for Common Lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">109</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">17</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/qlot">qlot</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">A project-local library installer for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">105</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">18</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/sxql">sxql</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">A SQL generator for Common Lisp.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">103</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">19</td>
+                            <td>
+                                <a href="https://github.com/mathematical-systems/clml">clml</a>
+                                <span class="text-muted small">mathematical-systems</span>
+                            </td>
+                            <td class="small">Common Lisp Machine Learning Library</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">101</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">20</td>
+                            <td>
+                                <a href="https://github.com/cxxxr/lem">lem</a>
+                                <span class="text-muted small">cxxxr</span>
+                            </td>
+                            <td class="small">Lem Editor Modules</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">98</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">21</td>
+                            <td>
+                                <a href="https://github.com/zkat/chanl">chanl</a>
+                                <span class="text-muted small">zkat</span>
+                            </td>
+                            <td class="small">Portable channel-based concurrency for Common Lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">97</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">22</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/cl-dbi">cl-dbi</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Database independent interface for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">89</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">23</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/cl-project">cl-project</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Generate modern project skeletons</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">85</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">24</td>
+                            <td>
+                                <a href="https://github.com/mtravers/heroku-cl-example">heroku-cl-example</a>
+                                <span class="text-muted small">mtravers</span>
+                            </td>
+                            <td class="small">Example use of Heroku Common Lisp Buildpack</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">83</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">25</td>
+                            <td>
+                                <a href="https://github.com/slburson/fset">fset</a>
+                                <span class="text-muted small">slburson</span>
+                            </td>
+                            <td class="small">FSet, the functional collections library for Common Lisp.</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">81</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">26</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/dexador">dexador</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Yet another HTTP client for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">77</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">27</td>
+                            <td>
+                                <a href="https://github.com/angavrilov/cl-gpu">cl-gpu</a>
+                                <span class="text-muted small">angavrilov</span>
+                            </td>
+                            <td class="small">A library for writing GPU (CUDA) kernels in a subset of Common Lisp</td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">75</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">28</td>
+                            <td>
+                                <a href="https://github.com/vseloved/rutils">rutils</a>
+                                <span class="text-muted small">vseloved</span>
+                            </td>
+                            <td class="small">Radical Utilities for Common Lisp</td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">72</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">29</td>
+                            <td>
+                                <a href="https://github.com/archimag/cl-closure-template">cl-closure-template</a>
+                                <span class="text-muted small">archimag</span>
+                            </td>
+                            <td class="small">Common Lisp implementation of Google's Closure Templates.</td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">65</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">30</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/shelly">shelly</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Make Common Lisp shell-friendly.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">63</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">31</td>
+                            <td>
+                                <a href="https://github.com/mtravers/wuwei">wuwei</a>
+                                <span class="text-muted small">mtravers</span>
+                            </td>
+                            <td class="small">WuWei -- effortless Ajax web UIs from Common Lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">60</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">32</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/datafly">datafly</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">A lightweight database library for Common Lisp.</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">57</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">33</td>
+                            <td>
+                                <a href="https://github.com/zkat/sheeple">sheeple</a>
+                                <span class="text-muted small">zkat</span>
+                            </td>
+                            <td class="small">Cheeky prototypes for Common Lisp</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">56</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">34</td>
+                            <td>
+                                <a href="https://github.com/gigamonkey/toot">toot</a>
+                                <span class="text-muted small">gigamonkey</span>
+                            </td>
+                            <td class="small">A web server created by stripping down and reorganizing Edi Weitz's Hunchentoot</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">56</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">35</td>
+                            <td>
+                                <a href="https://github.com/tarballs-are-good/quickutil">quickutil</a>
+                                <span class="text-muted small">tarballs-are-good</span>
+                            </td>
+                            <td class="small">The solution to the Utility Library problem.</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">56</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">36</td>
+                            <td>
+                                <a href="https://github.com/thezerobit/green-threads">green-threads</a>
+                                <span class="text-muted small">thezerobit</span>
+                            </td>
+                            <td class="small">A lightweight thread / cooperative multitasking library for Common Lisp.</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">54</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">37</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/integral">integral</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">An object relational mapper for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">54</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">38</td>
+                            <td>
+                                <a href="https://github.com/zkat/squirl">squirl</a>
+                                <span class="text-muted small">zkat</span>
+                            </td>
+                            <td class="small">Common Lisp port of the Chipmunk 2d physics library</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">49</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">39</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/mito">mito</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">An ORM for Common Lisp with migrations, relationships and PostgreSQL support</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">48</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">40</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/quri">quri</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Yet another URI library for Common Lisp</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">48</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">41</td>
+                            <td>
+                                <a href="https://github.com/orthecreedence/blackbird">blackbird</a>
+                                <span class="text-muted small">orthecreedence</span>
+                            </td>
+                            <td class="small">Common Lisp promise implementation (successor to cl-async-future)</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">48</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">42</td>
+                            <td>
+                                <a href="https://github.com/sellout/quid-pro-quo">quid-pro-quo</a>
+                                <span class="text-muted small">sellout</span>
+                            </td>
+                            <td class="small">A contract programming library for Common Lisp in the style of Eiffel’s Design by Contract ™.</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">46</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">43</td>
+                            <td>
+                                <a href="https://github.com/kevinlynx/ext-blog">ext-blog</a>
+                                <span class="text-muted small">kevinlynx</span>
+                            </td>
+                            <td class="small">ext-blog is a common lisp blog engine. It supports custom theme and you can port a WordPress theme for it.</td>
+                            <td><span class="flag flag-cn" title="China"></span></td>
+                            <td class="text-right text-muted small">43</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">44</td>
+                            <td>
+                                <a href="https://github.com/fukamachi/lack">lack</a>
+                                <span class="text-muted small">fukamachi</span>
+                            </td>
+                            <td class="small">Lack, the core of Clack</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">43</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">45</td>
+                            <td>
+                                <a href="https://github.com/vseloved/kpi-spos">kpi-spos</a>
+                                <span class="text-muted small">vseloved</span>
+                            </td>
+                            <td class="small">Учебный курс "Операционные системы"</td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">43</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">46</td>
+                            <td>
+                                <a href="https://github.com/sellout/external-program">external-program</a>
+                                <span class="text-muted small">sellout</span>
+                            </td>
+                            <td class="small">A portable Common Lisp library for running external programs from within Lisp.</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">42</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">47</td>
+                            <td>
+                                <a href="https://github.com/orthecreedence/cl-rethinkdb">cl-rethinkdb</a>
+                                <span class="text-muted small">orthecreedence</span>
+                            </td>
+                            <td class="small">RethinkDB driver for Common Lisp </td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">41</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">48</td>
+                            <td>
+                                <a href="https://github.com/dlowe-net/local-time">local-time</a>
+                                <span class="text-muted small">dlowe-net</span>
+                            </td>
+                            <td class="small">Time manipulation library for Common Lisp</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">40</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">49</td>
+                            <td>
+                                <a href="https://github.com/mbattyani/cl-pdf">cl-pdf</a>
+                                <span class="text-muted small">mbattyani</span>
+                            </td>
+                            <td class="small">CL-PDF is a cross-platform Common Lisp library for generating PDF files.</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">40</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">50</td>
+                            <td>
+                                <a href="https://github.com/Liutos/cl-github-page">cl-github-page</a>
+                                <span class="text-muted small">Liutos</span>
+                            </td>
+                            <td class="small">Static Blog Generator——静态博客生成器</td>
+                            <td><span class="flag flag-cn" title="China"></span></td>
+                            <td class="text-right text-muted small">39</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-2">
+
+                <h3 class="float-left">Countries</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Countries by number of stargazers."></sup>
+
+                <table class="table table-hover table-sm small">
+                    <thead class="text-muted">
+                        <tr>
+                            <th class="text-center" width="1%">#</th>
+                            <th width="25%">Name</th>
+                            <th width="1%"></th>
+                            <th class="text-center" width="1%">★</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">1</td>
+                            <td>Japan</td>
+                            <td><span class="flag flag-jp" title="Japan"></span></td>
+                            <td class="text-right text-muted small">4000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">2</td>
+                            <td>Canada</td>
+                            <td><span class="flag flag-ca" title="Canada"></span></td>
+                            <td class="text-right text-muted small">2362</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">3</td>
+                            <td>Russia</td>
+                            <td><span class="flag flag-ru" title="Russia"></span></td>
+                            <td class="text-right text-muted small">722</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">4</td>
+                            <td>USA</td>
+                            <td><span class="flag flag-us" title="USA"></span></td>
+                            <td class="text-right text-muted small">606</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">5</td>
+                            <td>Ukraine</td>
+                            <td><span class="flag flag-ua" title="Ukraine"></span></td>
+                            <td class="text-right text-muted small">400</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">6</td>
+                            <td>Germany</td>
+                            <td><span class="flag flag-de" title="Germany"></span></td>
+                            <td class="text-right text-muted small">136</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">7</td>
+                            <td>China</td>
+                            <td><span class="flag flag-cn" title="China"></span></td>
+                            <td class="text-right text-muted small">118</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">8</td>
+                            <td>United Kingdom</td>
+                            <td><span class="flag flag-uk" title="United Kingdom"></span></td>
+                            <td class="text-right text-muted small">94</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">9</td>
+                            <td>Argentina</td>
+                            <td><span class="flag flag-ar" title="Argentina"></span></td>
+                            <td class="text-right text-muted small">83</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">10</td>
+                            <td>Belarus</td>
+                            <td><span class="flag flag-by" title="Belarus"></span></td>
+                            <td class="text-right text-muted small">51</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">11</td>
+                            <td>France</td>
+                            <td><span class="flag flag-fr" title="France"></span></td>
+                            <td class="text-right text-muted small">44</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">12</td>
+                            <td>India</td>
+                            <td><span class="flag flag-in" title="India"></span></td>
+                            <td class="text-right text-muted small">43</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">13</td>
+                            <td>Australia</td>
+                            <td><span class="flag flag-au" title="Australia"></span></td>
+                            <td class="text-right text-muted small">23</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="text-right text-muted small">14</td>
+                            <td>Brazil</td>
+                            <td><span class="flag flag-br" title="Brazil"></span></td>
+                            <td class="text-right text-muted small">10</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-light">
+
+        <span class="small navbar-text">
+            <a href="https://github.com/idlesign/codeorigins" title="CodeOrigins on GitHub">CodeOrigins</a>
+        </span>
+
+        <span class="ml-4 badge badge-secondary mr-auto" title="HTML compilation datetime UTC">2017-09-25 16:43</span>
+
+        <span class="mr-1">
+            <!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=46062456&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/46062456/3_0_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="46062456" data-lang="ru" /></a> <!-- /Yandex.Metrika informer -->
+        </span>
+
+    </nav>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+<script src="https://yastatic.net/share2/share.js" async="async"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+</body>
+</html>
