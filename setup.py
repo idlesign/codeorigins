@@ -32,6 +32,7 @@ setup(
 
     install_requires=[
         'click',
+        'Jinja2',
     ],
     setup_requires=[],
 
