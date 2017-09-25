@@ -22,6 +22,8 @@ Description
 
 *Code origins contest based on GitHub data*
 
+CodeOrigins live: http://idlesign.github.io/codeorigins/
+
 * Find interesting people and projects originating in various countries;
 * See what countries produce most starred projects;
 * Know your impact on community of your favourite language;
@@ -32,12 +34,18 @@ Requirements
 ------------
 
 * Python 3
+* click
+* Jinja2
 
 
 CLI
 ---
 
-**Dumper**
+**codeorigins** comes with CLI to streamline common actions.
+
+Data Dump
+~~~~~~~~~
+
 
 Using rate-limited GitHub search API:
 
@@ -53,7 +61,20 @@ Register OAuth Application (https://github.com/settings/applications/) and use i
 *Client Secret* to loosen the rate limits (append `--credentials <id>,<secret>` to dump command).
 
 
-**Settings**
+HTML Export
+~~~~~~~~~~~
+
+Use `make_html` command to read data from dumps and compose HTML:
+
+.. code-block:: bash
+
+    > codeorigins make_html --dump_dir /home/idle/ghdump
+
+This will create HTML file in current working directory.
+
+
+Settings
+~~~~~~~~
 
 See supported countries and languages using the following command:
 
