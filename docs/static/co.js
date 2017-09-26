@@ -14,7 +14,7 @@ $(function () {
 
             $container.append($card);
 
-            window.githubCard.render($card.get(0), 'http://lab.lepture.com/github-cards/cards/default.html');
+            window.githubCard.render($card.get(0), 'https://lab.lepture.com/github-cards/cards/default.html');
 
             return $container.html();
         },
