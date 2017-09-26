@@ -60,7 +60,8 @@ COUNTRIES = sortdict({
         'names': ['Germany', 'Deutschland', 'DE'],
     },
     'ca': {
-        'names': ['Canada', 'CA'],
+        'names': ['Canada'],
+        # CA is usually used for California.
     },
     'fr': {
         'names': ['France', 'FR'],
