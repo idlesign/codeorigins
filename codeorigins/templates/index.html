@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+
+{% block contents %}
+
+    <div class="col"></div>
+
+    <div class="col-3">
+
+        <h3 class="float-left">Languages</h3>
+
+        <table class="table table-hover table-bordered">
+            <thead class="text-muted">
+                <tr>
+                    <th class="text-center" width="1%">#</th>
+                    <th>Title</th>
+                    <th class="text-center" width="1%">★</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for language, stars in languages.items() %}
+                <tr>
+                    <td class="text-right text-muted small">{{ loop.index }}</td>
+                    <td><a href="page_{{ language }}.html">{{ all_languages[language].name }}</a></td>
+                    <td class="text-right text-muted small">{{ stars }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-2">
+        {% include "sub_countries.html" %}
+    </div>
+
+    <div class="col"></div>
+
+{% endblock %}

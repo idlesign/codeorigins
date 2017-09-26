@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>CodeOrigins Contest</title>
+    <title>CodeOrigins - {{ subtitle }}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
     {% include "sub_metrika_counter.html" %}
 
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.hml">CodeOrigins</a>
+        <a class="navbar-brand" href="index.html">CodeOrigins</a>
 
         <h2 class="navbar-text mr-auto">{{ subtitle }}</h2>
 
@@ -30,16 +30,18 @@
     </nav>
 
     <div class="container-fluid">
+        <div class="row mt-4">
         {% block contents %}{% endblock %}
+        </div>
     </div>
 
     <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-light">
 
-        <span class="small navbar-text">
+        <span class="small navbar-text mr-auto">
             <a href="https://github.com/idlesign/codeorigins" title="CodeOrigins on GitHub">CodeOrigins</a>
         </span>
 
-        <span class="ml-4 badge badge-secondary mr-auto" title="HTML compilation datetime UTC">{{ dt_compiled }}</span>
+        <span class="mr-4 badge badge-info" title="HTML compilation datetime UTC">{{ dt_compiled }}</span>
 
         <span class="mr-1">
             {% include "sub_metrika_informer.html" %}
@@ -60,6 +62,11 @@
 <script src="https://yastatic.net/share2/share.js" async="async"></script>
 
 <script src="static/co.js" async="async"></script>
+
+<script>
+    window.githubCard = {};  // Object for render function.
+</script>
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
 
 </body>
 </html>

@@ -10,8 +10,8 @@ from .utils import Renderer, LOG
 class HtmlComposer:
     """Offers export to HTML functions."""
 
-    max_users = 25
-    max_repos = 50
+    max_users = 50
+    max_repos = 200
 
     def __init__(self, data):
         """
@@ -32,9 +32,28 @@ class HtmlComposer:
         LOG.info('Generating HTML in %s ...', target_dir)
 
         data = self.data
+        compilation_date = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')
 
         def sort_by_stars(what):
-            what.sort(key=itemgetter('stars'), reverse=True)
+            """
+            :param list|dict what:
+            :rtype: list|dict
+            """
+            if isinstance(what, list):
+                return sorted(what, key=itemgetter('stars'), reverse=True)
+
+            return OrderedDict(sorted(what.items(), key=lambda item: item[1], reverse=True))
+
+        def add_common_context(ctx):
+            ctx.update({
+                'all_countries': COUNTRIES,
+                'all_languages': LANGUAGES,
+                'dt_compiled': compilation_date,
+            })
+            return ctx
+
+        index_languages = defaultdict(int)
+        index_countries = defaultdict(int)
 
         for language, countries in data.items():
 
@@ -60,30 +79,35 @@ class HtmlComposer:
                         })
                         ctx_countries[country] += stars
 
+                        index_languages[language] += stars
+                        index_countries[country] += stars
+
                     ctx_users.append({
                         'country': country,
                         'stars': user_stars,
                         'info': user,
                     })
 
-            sort_by_stars(ctx_users)
-            sort_by_stars(ctx_repos)
-            ctx_countries = OrderedDict(sorted(ctx_countries.items(), key=lambda item: item[1], reverse=True))
-
             target_filename = 'page_%s.html' % language
 
             LOG.info('  Writing %s ...', target_filename)
 
-            Renderer.render_to_directory('page.html', target_dir, {
-                'language': language,
-                'users': ctx_users,
-                'repos': ctx_repos,
-                'countries': ctx_countries,
+            Renderer.render_to_directory('page.html', target_dir, add_common_context({
+                'subtitle': LANGUAGES[language]['name'],
+                'users': sort_by_stars(ctx_users),
+                'repos': sort_by_stars(ctx_repos),
+                'countries': sort_by_stars(ctx_countries),
                 'max_users': self.max_users,
                 'max_repos': self.max_repos,
-                'all_countries': COUNTRIES,
-                'all_languages': LANGUAGES,
-                'dt_compiled': datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M'),
-            }, target_filename=target_filename)
+            }), target_filename=target_filename)
+
+        LOG.info('  Creating index file ...')
+
+        Renderer.render_to_directory('index.html', target_dir, add_common_context({
+            'subtitle': '',
+            'languages': sort_by_stars(index_languages),
+            'countries': sort_by_stars(index_countries),
+            'dt_compiled': compilation_date,
+        }))
 
         LOG.info('Finished.')
