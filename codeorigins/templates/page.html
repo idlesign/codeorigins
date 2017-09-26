@@ -1,160 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "_base.html" %}
 
-    <title>CodeOrigins Contest</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block contents %}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <div class="row mt-4">
 
-    <style>
-        .flag{display:inline-block;width:16px;height:11px;background:url('https://media.flag-sprites.com/veowpp/flags.png') no-repeat}.flag.flag-ua{background-position:-128px -154px}.flag.flag-py{background-position:-144px -121px}.flag.flag-az{background-position:-240px 0}.flag.flag-us{background-position:-176px -154px}.flag.flag-pf{background-position:-224px -110px}.flag.flag-ge{background-position:-208px -44px}.flag.flag-gi{background-position:-16px -55px}.flag.flag-mm{background-position:-16px -99px}.flag.flag-kg{background-position:-48px -77px}.flag.flag-kn{background-position:-112px -77px}.flag.flag-mu{background-position:-144px -99px}.flag.flag-ec{background-position:-176px -33px}.flag.flag-hk{background-position:-208px -55px}.flag.flag-io{background-position:-144px -66px}.flag.flag-bo{background-position:-176px -11px}.flag.flag-ck{background-position:-160px -22px}.flag.flag-ht{background-position:-16px -66px}.flag.flag-gf{background-position:-224px -44px}.flag.flag-iq{background-position:-160px -66px}.flag.flag-jo{background-position:0 -77px}.flag.flag-um{background-position:-160px -154px}.flag.flag-eu{background-position:-48px -44px}.flag.flag-mn{background-position:-32px -99px}.flag.flag-ad{background-position:0 0}.flag.flag-tg{background-position:-160px -143px}.flag.flag-tl{background-position:-240px -143px}.flag.flag-ch{background-position:-128px -22px}.flag.flag-pk{background-position:-16px -121px}.flag.flag-ru{background-position:-224px -121px}.flag.flag-ss{background-position:-16px -143px}.flag.flag-gh{background-position:0 -55px}.flag.flag-gq{background-position:-96px -55px}.flag.flag-me{background-position:-192px -88px}.flag.flag-kp{background-position:-128px -77px}.flag.flag-tr{background-position:-48px -154px}.flag.flag-lr{background-position:-48px -88px}.flag.flag-ba{background-position:0 -11px}.flag.flag-cl{background-position:-176px -22px}.flag.flag-sj{background-position:-144px -132px}.flag.flag-kurdistan{background-position:-160px -77px}.flag.flag-sm{background-position:-192px -132px}.flag.flag-sk{background-position:-160px -132px}.flag.flag-ar{background-position:-144px 0}.flag.flag-sz{background-position:-96px -143px}.flag.flag-tibet{background-position:-192px -143px}.flag.flag-dm{background-position:-128px -33px}.flag.flag-xk{background-position:-128px -165px}.flag.flag-ao{background-position:-128px 0}.flag.flag-ng{background-position:-48px -110px}.flag.flag-fr{background-position:-144px -44px}.flag.flag-lv{background-position:-112px -88px}.flag.flag-pn{background-position:-64px -121px}.flag.flag-cd{background-position:-80px -22px}.flag.flag-cu{background-position:0 -33px}.flag.flag-nc{background-position:0 -110px}.flag.flag-mv{background-position:-160px -99px}.flag.flag-eg{background-position:-208px -33px}.flag.flag-mw{background-position:-176px -99px}.flag.flag-tf{background-position:-144px -143px}.flag.flag-nr{background-position:-128px -110px}.flag.flag-ws{background-position:-112px -165px}.flag.flag-kr{background-position:-144px -77px}.flag.flag-sd{background-position:-64px -132px}.flag.flag-mo{background-position:-48px -99px}.flag.flag-rs{background-position:-208px -121px}.flag.flag-er{background-position:0 -44px}.flag.flag-fo{background-position:-128px -44px}.flag.flag-fj{background-position:-80px -44px}.flag.flag-al{background-position:-80px 0}.flag.flag-bg{background-position:-80px -11px}.flag.flag-je{background-position:-224px -66px}.flag.flag-mp{background-position:-64px -99px}.flag.flag-tj{background-position:-208px -143px}.flag.flag-somaliland{background-position:-240px -132px}.flag.flag-bj{background-position:-128px -11px}.flag.flag-gw{background-position:-176px -55px}.flag.flag-cy{background-position:-48px -33px}.flag.flag-ai{background-position:-64px 0}.flag.flag-jm{background-position:-240px -66px}.flag.flag-an{background-position:-112px 0}.flag.flag-et{background-position:-32px -44px}.flag.flag-mr{background-position:-96px -99px}.flag.flag-gn{background-position:-64px -55px}.flag.flag-tz{background-position:-112px -154px}.flag.flag-pw{background-position:-128px -121px}.flag.flag-si{background-position:-128px -132px}.flag.flag-tn{background-position:-16px -154px}.flag.flag-pt{background-position:-112px -121px}.flag.flag-gt{background-position:-144px -55px}.flag.flag-ni{background-position:-64px -110px}.flag.flag-wales{background-position:-80px -165px}.flag.flag-mg{background-position:-208px -88px}.flag.flag-ki{background-position:-80px -77px}.flag.flag-ms{background-position:-112px -99px}.flag.flag-nz{background-position:-160px -110px}.flag.flag-vu{background-position:-64px -165px}.flag.flag-yt{background-position:-160px -165px}.flag.flag-th{background-position:-176px -143px}.flag.flag-sc{background-position:-32px -132px}.flag.flag-mk{background-position:-240px -88px}.flag.flag-ca{background-position:-48px -22px}.flag.flag-ci{background-position:-144px -22px}.flag.flag-ic{background-position:-48px -66px}.flag.flag-ph{background-position:0 -121px}.flag.flag-na{background-position:-240px -99px}.flag.flag-za{background-position:-176px -165px}.flag.flag-de{background-position:-80px -33px}.flag.flag-sl{background-position:-176px -132px}.flag.flag-br{background-position:-192px -11px}.flag.flag-catalonia{background-position:-64px -22px}.flag.flag-as{background-position:-160px 0}.flag.flag-cf{background-position:-96px -22px}.flag.flag-zm{background-position:-208px -165px}.flag.flag-km{background-position:-96px -77px}.flag.flag-tc{background-position:-112px -143px}.flag.flag-bf{background-position:-64px -11px}.flag.flag-im{background-position:-112px -66px}.flag.flag-va{background-position:-224px -154px}.flag.flag-np{background-position:-112px -110px}.flag.flag-bs{background-position:-208px -11px}.flag.flag-mz{background-position:-224px -99px}.flag.flag-lu{background-position:-96px -88px}.flag.flag-ly{background-position:-128px -88px}.flag.flag-scotland{background-position:-48px -132px}.flag.flag-do{background-position:-144px -33px}.flag.flag-pm{background-position:-48px -121px}.flag.flag-id{background-position:-64px -66px}.flag.flag-ae{background-position:-16px 0}.flag.flag-vc{background-position:-240px -154px}.flag.flag-hr{background-position:0 -66px}.flag.flag-ps{background-position:-96px -121px}.flag.flag-am{background-position:-96px 0}.flag.flag-ne{background-position:-16px -110px}.flag.flag-nu{background-position:-144px -110px}.flag.flag-uy{background-position:-192px -154px}.flag.flag-mh{background-position:-224px -88px}.flag.flag-kw{background-position:-176px -77px}.flag.flag-ml{background-position:0 -99px}.flag.flag-gu{background-position:-160px -55px}.flag.flag-sg{background-position:-96px -132px}.flag.flag-mt{background-position:-128px -99px}.flag.flag-co{background-position:-224px -22px}.flag.flag-tk{background-position:-224px -143px}.flag.flag-to{background-position:-32px -154px}.flag.flag-ir{background-position:-176px -66px}.flag.flag-om{background-position:-176px -110px}.flag.flag-mx{background-position:-192px -99px}.flag.flag-ve{background-position:0 -165px}.flag.flag-cg{background-position:-112px -22px}.flag.flag-sy{background-position:-80px -143px}.flag.flag-nf{background-position:-32px -110px}.flag.flag-zw{background-position:-224px -165px}.flag.flag-tt{background-position:-64px -154px}.flag.flag-gm{background-position:-48px -55px}.flag.flag-vg{background-position:-16px -165px}.flag.flag-af{background-position:-32px 0}.flag.flag-ag{background-position:-48px 0}.flag.flag-gs{background-position:-128px -55px}.flag.flag-ls{background-position:-64px -88px}.flag.flag-no{background-position:-96px -110px}.flag.flag-sh{background-position:-112px -132px}.flag.flag-pa{background-position:-192px -110px}.flag.flag-sn{background-position:-208px -132px}.flag.flag-au{background-position:-192px 0}.flag.flag-bt{background-position:-224px -11px}.flag.flag-sv{background-position:-48px -143px}.flag.flag-ye{background-position:-144px -165px}.flag.flag-mc{background-position:-160px -88px}.flag.flag-hn{background-position:-240px -55px}.flag.flag-is{background-position:-192px -66px}.flag.flag-la{background-position:-224px -77px}.flag.flag-tv{background-position:-80px -154px}.flag.flag-lk{background-position:-32px -88px}.flag.flag-ee{background-position:-192px -33px}.flag.flag-bi{background-position:-112px -11px}.flag.flag-lb{background-position:-240px -77px}.flag.flag-vn{background-position:-48px -165px}.flag.flag-eh{background-position:-224px -33px}.flag.flag-rw{background-position:-240px -121px}.flag.flag-ie{background-position:-80px -66px}.flag.flag-bm{background-position:-144px -11px}.flag.flag-ma{background-position:-144px -88px}.flag.flag-dz{background-position:-160px -33px}.flag.flag-cr{background-position:-240px -22px}.flag.flag-dk{background-position:-112px -33px}.flag.flag-sb{background-position:-16px -132px}.flag.flag-jp{background-position:-16px -77px}.flag.flag-td{background-position:-128px -143px}.flag.flag-ro{background-position:-192px -121px}.flag.flag-tm{background-position:0 -154px}.flag.flag-my{background-position:-208px -99px}.flag.flag-ax{background-position:-224px 0}.flag.flag-gp{background-position:-80px -55px}.flag.flag-nl{background-position:-80px -110px}.flag.flag-gg{background-position:-240px -44px}.flag.flag-bb{background-position:-16px -11px}.flag.flag-ug{background-position:-144px -154px}.flag.flag-fm{background-position:-112px -44px}.flag.flag-gy{background-position:-192px -55px}.flag.flag-pg{background-position:-240px -110px}.flag.flag-bz{background-position:-32px -22px}.flag.flag-bh{background-position:-96px -11px}.flag.flag-zanzibar{background-position:-192px -165px}.flag.flag-pe{background-position:-208px -110px}.flag.flag-ky{background-position:-192px -77px}.flag.flag-tw{background-position:-96px -154px}.flag.flag-es{background-position:-16px -44px}.flag.flag-kh{background-position:-64px -77px}.flag.flag-england{background-position:-240px -33px}.flag.flag-lt{background-position:-80px -88px}.flag.flag-bv{background-position:-240px -11px}.flag.flag-mq{background-position:-80px -99px}.flag.flag-sa{background-position:0 -132px}.flag.flag-so{background-position:-224px -132px}.flag.flag-qa{background-position:-160px -121px}.flag.flag-bw{background-position:0 -22px}.flag.flag-pl{background-position:-32px -121px}.flag.flag-hm{background-position:-224px -55px}.flag.flag-ga{background-position:-160px -44px}.flag.flag-kz{background-position:-208px -77px}.flag.flag-fi{background-position:-64px -44px}.flag.flag-cw{background-position:-32px -33px}.flag.flag-cn{background-position:-208px -22px}.flag.flag-pr{background-position:-80px -121px}.flag.flag-cm{background-position:-192px -22px}.flag.flag-aw{background-position:-208px 0}.flag.flag-bn{background-position:-160px -11px}.flag.flag-be{background-position:-48px -11px}.flag.flag-cv{background-position:-16px -33px}.flag.flag-il{background-position:-96px -66px}.flag.flag-dj{background-position:-96px -33px}.flag.flag-at{background-position:-176px 0}.flag.flag-gb{background-position:-176px -44px}.flag.flag-sx{background-position:-64px -143px}.flag.flag-se{background-position:-80px -132px}.flag.flag-re{background-position:-176px -121px}.flag.flag-gd{background-position:-192px -44px}.flag.flag-uz{background-position:-208px -154px}.flag.flag-md{background-position:-176px -88px}.flag.flag-by{background-position:-16px -22px}.flag.flag-wf{background-position:-96px -165px}.flag.flag-vi{background-position:-32px -165px}.flag.flag-it{background-position:-208px -66px}.flag.flag-ke{background-position:-32px -77px}.flag.flag-gl{background-position:-32px -55px}.flag.flag-cz{background-position:-64px -33px}.flag.flag-sr{background-position:0 -143px}.flag.flag-li{background-position:-16px -88px}.flag.flag-in{background-position:-128px -66px}.flag.flag-bd{background-position:-32px -11px}.flag.flag-fk{background-position:-96px -44px}.flag.flag-lc{background-position:0 -88px}.flag.flag-gr{background-position:-112px -55px}.flag.flag-st{background-position:-32px -143px}.flag.flag-hu{background-position:-32px -66px}
-    </style>
+        <div class="col-2">
 
-</head>
-<body>
-    <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter46062456 = new Ya.Metrika({ id:46062456, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/46062456" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+            <h3 class="float-left">Users</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top {{ max_users }} users by number of stargazers."></sup>
 
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.hml">CodeOrigins</a>
+            <table class="table table-hover table-sm small">
+                <thead class="text-muted">
+                    <tr>
+                        <th class="text-center" width="1%">#</th>
+                        <th>Name</th>
+                        <th width="1%"></th>
+                        <th width="1%"></th>
+                        <th class="text-center" width="1%">★</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users[:max_users] %}
+                    <tr>
+                        <td class="text-right text-muted small">{{ loop.index }}</td>
+                        <td><a href="http://github.com/{{ user.info.name }}">{{ user.info.name }}</a></td>
+                        <td><img alt="@{{ user.info.name }}" src="{{ user.info.avatar }}?v=4&s=40" height="20" width="20" class="rounded"></td>
+                        <td><span class="flag flag-{{ user.country }}" title="{{ all_countries[user.country].names[0] }}"></span></td>
+                        <td class="text-right text-muted small">{{ user.stars }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-        <h2 class="navbar-text mr-auto">{{ all_languages[language].name }}</h2>
+        <div class="col">
+            <h3 class="float-left">Repositories</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top {{ max_repos }} repositories by number of stargazers."></sup>
 
-        <span class="navbar-text mr-3">
-            GitHub based code origins contest
-        </span>
-
-        <div class="ya-share2" data-services="twitter,digg,reddit,vkontakte,facebook,gplus" data-lang="en"></div>
-    </nav>
-
-    <div class="container-fluid">
-
-        <div class="row mt-4">
-
-            <div class="col-2">
-
-                <h3 class="float-left">Users</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top {{ max_users }} users by number of stargazers."></sup>
-
-                <table class="table table-hover table-sm small">
-                    <thead class="text-muted">
-                        <tr>
-                            <th class="text-center" width="1%">#</th>
-                            <th>Name</th>
-                            <th width="1%"></th>
-                            <th width="1%"></th>
-                            <th class="text-center" width="1%">★</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users[:max_users] %}
-                        <tr>
-                            <td class="text-right text-muted small">{{ loop.index }}</td>
-                            <td><a href="http://github.com/{{ user.info.name }}">{{ user.info.name }}</a></td>
-                            <td><img alt="@{{ user.info.name }}" src="{{ user.info.avatar }}?v=4&s=40" height="20" width="20" class="rounded"></td>
-                            <td><span class="flag flag-{{ user.country }}" title="{{ all_countries[user.country].names[0] }}"></span></td>
-                            <td class="text-right text-muted small">{{ user.stars }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col">
-                <h3 class="float-left">Repositories</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Top {{ max_repos }} repositories by number of stargazers."></sup>
-
-                <table class="table table-hover table-sm">
-                    <thead class="text-muted">
-                        <tr>
-                            <th class="text-center" width="1%">#</th>
-                            <th width="25%">Title</th>
-                            <th>Description</th>
-                            <th width="1%"></th>
-                            <th class="text-center" width="1%">★</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for repo in repos[:max_repos] %}
-                        <tr>
-                            <td class="text-right text-muted small">{{ loop.index }}</td>
-                            <td>
-                                <a href="{{ repo.info.url }}">{{ repo.info.name }}</a>
-                                <span class="text-muted small">{{ repo.user }}</span>
-                            </td>
-                            <td class="small">{{ repo.info.description }}</td>
-                            <td><span class="flag flag-{{ repo.country }}" title="{{ all_countries[repo.country].names[0] }}"></span></td>
-                            <td class="text-right text-muted small">{{ repo.info.stars }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-            </div>
-
-            <div class="col-2">
-
-                <h3 class="float-left">Countries</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Countries by number of stargazers."></sup>
-
-                <table class="table table-hover table-sm small">
-                    <thead class="text-muted">
-                        <tr>
-                            <th class="text-center" width="1%">#</th>
-                            <th width="25%">Name</th>
-                            <th width="1%"></th>
-                            <th class="text-center" width="1%">★</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for country_code, country_stars in countries.items() %}
-                        <tr>
-                            <td class="text-right text-muted small">{{ loop.index }}</td>
-                            <td>{{ all_countries[country_code].names[0] }}</td>
-                            <td><span class="flag flag-{{ country_code }}" title="{{ all_countries[country_code].names[0] }}"></span></td>
-                            <td class="text-right text-muted small">{{ country_stars }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-            </div>
+            <table class="table table-hover table-sm">
+                <thead class="text-muted">
+                    <tr>
+                        <th class="text-center" width="1%">#</th>
+                        <th width="25%">Title</th>
+                        <th>Description</th>
+                        <th width="1%"></th>
+                        <th class="text-center" width="1%">★</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for repo in repos[:max_repos] %}
+                    <tr>
+                        <td class="text-right text-muted small">{{ loop.index }}</td>
+                        <td>
+                            <a href="{{ repo.info.url }}">{{ repo.info.name }}</a>
+                            <span class="text-muted small">{{ repo.user }}</span>
+                        </td>
+                        <td class="small">{{ repo.info.description }}</td>
+                        <td><span class="flag flag-{{ repo.country }}" title="{{ all_countries[repo.country].names[0] }}"></span></td>
+                        <td class="text-right text-muted small">{{ repo.info.stars }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
         </div>
+
+        <div class="col-2">
+
+            <h3 class="float-left">Countries</h3><sup class="float-left fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" title="Countries by number of stargazers."></sup>
+
+            <table class="table table-hover table-sm small">
+                <thead class="text-muted">
+                    <tr>
+                        <th class="text-center" width="1%">#</th>
+                        <th width="25%">Name</th>
+                        <th width="1%"></th>
+                        <th class="text-center" width="1%">★</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for country_code, country_stars in countries.items() %}
+                    <tr>
+                        <td class="text-right text-muted small">{{ loop.index }}</td>
+                        <td>{{ all_countries[country_code].names[0] }}</td>
+                        <td><span class="flag flag-{{ country_code }}" title="{{ all_countries[country_code].names[0] }}"></span></td>
+                        <td class="text-right text-muted small">{{ country_stars }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
     </div>
 
-    <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-light">
-
-        <span class="small navbar-text">
-            <a href="https://github.com/idlesign/codeorigins" title="CodeOrigins on GitHub">CodeOrigins</a>
-        </span>
-
-        <span class="ml-4 badge badge-secondary mr-auto" title="HTML compilation datetime UTC">{{ dt_compiled }}</span>
-
-        <span class="mr-1">
-            <!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=46062456&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/46062456/3_0_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="46062456" data-lang="ru" /></a> <!-- /Yandex.Metrika informer -->
-        </span>
-
-    </nav>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
-<script src="https://yastatic.net/share2/share.js" async="async"></script>
-
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-
-</body>
-</html>
+{% endblock %}
