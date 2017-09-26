@@ -6,6 +6,18 @@ LANGUAGES = sortdict({
     'py': {
         'name': 'Python',
     },
+    'go': {
+        'name': 'Go',
+    },
+    'rust': {
+        'name': 'Rust',
+    },
+    'c': {
+        'name': 'C',
+    },
+    'java': {
+        'name': 'Java',
+    },
     'lisp': {
         'name': 'Lisp',
         'min_stars': 10,
