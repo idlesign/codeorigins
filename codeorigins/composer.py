@@ -1,10 +1,10 @@
 from collections import defaultdict, OrderedDict
 from datetime import datetime, timezone
 from operator import itemgetter
-from os import getcwd
+from os import makedirs, path, getcwd
 
 from .settings import COUNTRIES, LANGUAGES
-from .utils import Renderer
+from .utils import Renderer, LOG
 
 
 class HtmlComposer:
@@ -25,7 +25,12 @@ class HtmlComposer:
         :param str target_dir: If not set current working dir is used.
 
         """
-        target_dir = target_dir or getcwd()
+        if target_dir is None:
+            target_dir = path.join(getcwd(), 'docs')
+            makedirs(target_dir, exist_ok=True)
+
+        LOG.info('Generating HTML in %s ...', target_dir)
+
         data = self.data
 
         def sort_by_stars(what):
@@ -65,6 +70,10 @@ class HtmlComposer:
             sort_by_stars(ctx_repos)
             ctx_countries = OrderedDict(sorted(ctx_countries.items(), key=lambda item: item[1], reverse=True))
 
+            target_filename = 'page_%s.html' % language
+
+            LOG.info('  Writing %s ...', target_filename)
+
             Renderer.render_to_directory('page.html', target_dir, {
                 'language': language,
                 'users': ctx_users,
@@ -75,4 +84,6 @@ class HtmlComposer:
                 'all_countries': COUNTRIES,
                 'all_languages': LANGUAGES,
                 'dt_compiled': datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M'),
-            }, target_filename='page_%s.html' % language)
+            }, target_filename=target_filename)
+
+        LOG.info('Finished.')
