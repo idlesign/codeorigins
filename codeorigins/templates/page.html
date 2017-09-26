@@ -1,11 +1,14 @@
 {% extends "_base.html" %}
 
 
+{% set lead = "programming language" %}
+
+
 {% block contents %}
 
     <div class="col-2">
 
-        <h3 class="float-left">Users</h3>
+        <h5 class="text-right"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Users</h5>
 
         <table class="table table-hover table-sm small">
             <thead class="text-muted">
@@ -32,7 +35,7 @@
     </div>
 
     <div class="col">
-        <h3 class="float-left">Repositories</h3>
+        <h5 class="text-right"><i class="fa fa-code-fork" aria-hidden="true"></i>&nbsp;Repositories</h5>
 
         <table class="table table-hover table-sm">
             <thead class="text-muted">

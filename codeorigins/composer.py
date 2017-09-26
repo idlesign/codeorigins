@@ -104,7 +104,6 @@ class HtmlComposer:
         LOG.info('  Creating index file ...')
 
         Renderer.render_to_directory('index.html', target_dir, add_common_context({
-            'subtitle': '',
             'languages': sort_by_stars(index_languages),
             'countries': sort_by_stars(index_countries),
             'dt_compiled': compilation_date,
