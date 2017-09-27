@@ -1,5 +1,34 @@
 /* globals $ */
 
+
+function applyCountryFilters() {
+    "use strict";
+
+    var chosenCountries = [];
+
+    $.each($('.cb-country'), function (idx, el) {
+        if (el.checked) {
+            chosenCountries.push($(el).data('name'));
+        }
+    });
+
+    function applyTo(selector) {
+        $.each($(selector), function (idx, el) {
+            var $row = $(el),
+                country = $row.data('country');
+
+            if ($.inArray(country, chosenCountries) > -1) {
+                $row.show();
+            } else {
+                $row.hide();
+            }
+        });
+    }
+
+    applyTo('.row-user');
+    applyTo('.row-repo');
+}
+
 $(function () {
     "use strict";
 
@@ -22,5 +51,7 @@ $(function () {
         'html': true,
         'trigger': 'hover'
     });
+
+    $('.cb-country').on('click', applyCountryFilters);
 
 });

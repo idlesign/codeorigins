@@ -11,7 +11,7 @@ class HtmlComposer:
     """Offers export to HTML functions."""
 
     max_users = 50
-    max_repos = 200
+    max_repos = 100
 
     def __init__(self, data):
         """

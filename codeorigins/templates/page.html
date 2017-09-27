@@ -2,6 +2,7 @@
 
 
 {% set lead = "programming language" %}
+{% set show_country_checkboxes = True %}
 
 
 {% block contents %}
@@ -21,9 +22,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users[:max_users] %}
-                <tr>
-                    <td class="text-right text-muted small">{{ loop.index }}</td>
+                {% for user in users %}
+                <tr class="row-user" {% if loop.index0 >= max_users %}style="display:none"{% endif %} data-country="{{ user.country }}">
+                    <td class="idx text-right text-muted small">{{ loop.index }}</td>
                     <td><a class="card-popover" data-card="{{ user.info.name }}" href="http://github.com/{{ user.info.name }}">{{ user.info.name }}</a></td>
                     <td><img alt="@{{ user.info.name }}" src="{{ user.info.avatar }}?v=4&s=40" height="20" width="20" class="rounded"></td>
                     <td><span class="flag flag-{{ user.country }}" title="{{ all_countries[user.country].names[0] }}"></span></td>
@@ -48,9 +49,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for repo in repos[:max_repos] %}
-                <tr>
-                    <td class="text-right text-muted small">{{ loop.index }}</td>
+                {% for repo in repos %}
+                <tr class="row-repo" {% if loop.index0 >= max_repos %}style="display:none"{% endif %} data-country="{{ repo.country }}">
+                    <td class="idx text-right text-muted small">{{ loop.index }}</td>
                     <td>
                         <a class="card-popover" data-card="{{ repo.user }}/{{ repo.info.name }}" href="{{ repo.info.url }}">{{ repo.info.name }}</a>
                         <span class="text-muted small">{{ repo.user }}</span>
