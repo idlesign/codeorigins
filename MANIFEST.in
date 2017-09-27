@@ -4,14 +4,8 @@ include INSTALL
 include LICENSE
 include README.rst
 
-include docs/Makefile
-recursive-include docs *.rst
-recursive-include docs *.py
-recursive-include tests *
-
 recursive-include codeorigins/templates/ *
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude * empty
-
