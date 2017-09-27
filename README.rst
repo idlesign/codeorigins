@@ -30,12 +30,30 @@ CodeOrigins live: http://idlesign.github.io/codeorigins/
 * and more.
 
 
-Requirements
-------------
+FAQ
+---
 
-* Python 3
-* click
-* Jinja2
+
+* *But wait, this data is not realtime!*
+
+  Yes, these are static web-pages (see `docs/`) compiled from dumped data (see `codeorigins/dump/`).
+  And it sure can be outdated.
+
+* *And what if I want to see updated data?*
+
+  You can dump data you're interested in and make a pull request.
+
+  Quick and dirty start:
+
+  1. Fork repository;
+  2. Git pull forked repository into local directory;
+  3. `cd` to the directory;
+  4. `pip install -e .` (`sudo` may be required) -
+     this will made `codeorigins` CLI available;
+  5. Use `codeorigins dump` (see below) without `--into` -
+     this puts dumps into `codeorigins/dump/`;
+  6. Commit and push added/changed dumps;
+  7. Create a pull request on your GitHub repository page.
 
 
 CLI
@@ -82,3 +100,10 @@ See supported countries and languages using the following command:
 
     > codeorigins show_settings
 
+
+Requirements
+------------
+
+* Python 3
+* click
+* Jinja2
