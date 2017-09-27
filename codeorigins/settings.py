@@ -53,7 +53,7 @@ COUNTRIES = sortdict({
     'au': {
         'names': ['Australia', 'AU'],
     },
-    'uk': {
+    'gb': {
         'names': ['United Kingdom', 'GB', 'UK'],
     },
     'de': {
