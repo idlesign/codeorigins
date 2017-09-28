@@ -83,7 +83,7 @@ COUNTRIES = sortdict({
 """Supported countries."""
 
 
-MIN_FOLLOWERS = 5
+MIN_FOLLOWERS = 10
 """Default minimum followers count for users."""
 
 

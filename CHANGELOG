@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
+* Minimum followers set to 10.
 * CLI now accepts --verbose flag.
 * Dump command now handles KeyboardInterrupt
 
