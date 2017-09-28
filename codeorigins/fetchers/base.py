@@ -1,5 +1,7 @@
+from collections import defaultdict
+
 from ..settings import COUNTRIES, LANGUAGES, MIN_STARS, MIN_FOLLOWERS
-from ..utils import logtime
+from ..utils import logtime, LOG
 
 
 class Fetcher:
@@ -10,10 +12,13 @@ class Fetcher:
     def __init__(self):
         self.results = {}
 
-    def _gather(self, country, language, min_stars, min_followers, totals_only=False):
+    def _gather_repos(self, language_name, min_stars):
         raise NotImplementedError
 
-    def run(self, languages=None, countries=None, totals_only=False):
+    def _gather_users(self, country_name, language_name, min_followers):
+        raise NotImplementedError
+
+    def run(self, languages=None, countries=None):
         """Fetches data from GitHub.
 
         Returns a dictionary indexed by country alias (iso code),
@@ -23,8 +28,6 @@ class Fetcher:
 
         :param list countries: Filter. Country aliases.
 
-        :param bool totals_only: Don't fetch stats. Only log total users.
-
         :rtype: dict
 
         """
@@ -33,33 +36,42 @@ class Fetcher:
         languages = list(map(str.lower, languages or LANGUAGES.keys()))
         countries = list(map(str.lower, countries or COUNTRIES.keys()))
 
-        with logtime('* Run'):
+        repos = defaultdict(list)
 
-            for country in COUNTRIES:
-                if country not in countries:
+        min_followers = MIN_FOLLOWERS
+
+        with logtime('Running'):
+
+            for language in LANGUAGES:
+                if language not in languages:
                     continue
 
-                with logtime(' * Country `%s`' % country):
+                language_meta = LANGUAGES[language]
+                language_name = language_meta['name']
 
-                    country_dict = results.setdefault(country, {})
+                min_stars = language_meta.get('min_stars') or MIN_STARS
 
-                    for language in LANGUAGES:
-                        if language not in languages:
+                with logtime('  Scanning `%s` repos. Min stars: %s' % (language, min_stars)):
+
+                    for user_login, repo in self._gather_repos(language_name, min_stars):
+                        repos[user_login].append(repo)
+
+                with logtime('  Scanning `%s` users.  Min followers: %s' % (language, min_followers)):
+
+                    for country in COUNTRIES:
+                        if country not in countries:
                             continue
 
-                        language_meta = LANGUAGES[language]
-                        language_name = language_meta['name']
+                        country_dict = results.setdefault(country, {})
+                        users_list = country_dict.setdefault(language, [])
 
-                        min_stars = language_meta.get('min_stars') or MIN_STARS
-                        min_followers = MIN_FOLLOWERS
-
-                        with logtime('  * Language `%s`' % language):
-                            users_list = country_dict.setdefault(language, [])
+                        with logtime('    Scanning `%s` country users' % country):
 
                             for country_name in COUNTRIES[country]['names']:
 
-                                for user in self._gather(
-                                        country_name, language_name,
-                                        min_stars=min_stars, min_followers=min_followers, totals_only=totals_only):
+                                for user_login, user in self._gather_users(country_name, language_name, min_followers):
+                                    user_repos = repos.get(user_login, [])
 
-                                    users_list.append(user)
+                                    if user_repos:
+                                        user.repos.extend(user_repos)
+                                        users_list.append(user)

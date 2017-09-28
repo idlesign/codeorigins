@@ -39,15 +39,16 @@ class Client:
 
         }, sort='followers')
 
-    def iter_repos(self, user, language, stars):
+    def iter_repos(self, language, stars, user=None):
 
-        yield from self._search('repositories', {
-
+        filter_dict = {
             'language': language,
             'stars': '>=%s' % stars,
-            'user': user,
+        }
+        if user:
+            filter_dict['user'] = user
 
-        }, sort='stars')
+        yield from self._search('repositories', filter_dict, sort='stars')
 
     def _request(self, url, params=None):
 
@@ -67,7 +68,7 @@ class Client:
 
             if sleep_time > 0:
                 sleep_time += 1  # Just to be sure...
-                LOG.info('  ! Time to sleep for %ss ...', sleep_time)
+                LOG.warning('! Time to sleep for %ss ...', sleep_time)
                 sleep(sleep_time)
 
         if response.status_code == 403:
@@ -106,45 +107,31 @@ class ApiFetcher(Fetcher):
         super().__init__()
         self.client = Client(client_credentials)
 
-    def _gather(self, country, language, min_stars, min_followers, totals_only=False):
+    def _gather_repos(self, language_name, min_stars):
 
-        users_seen = []
+        languages = self.client.iter_repos(language_name, min_stars)
 
-        users = self.client.iter_users(country, language, min_followers)
+        for repo_idx, (total_repos, repo) in enumerate(languages, 1):
+
+            if repo_idx == 1:
+                LOG.info('    Total repos: %s', total_repos)
+
+            yield repo['owner']['login'], Repository(
+                name=repo['name'],
+                url=repo['html_url'],
+                description=repo['description'],
+                stars=repo['stargazers_count'],
+            )
+
+    def _gather_users(self, country_name, language_name, min_followers):
+
+        users = self.client.iter_users(country_name, language_name, min_followers)
 
         for user_idx, (total_users, user) in enumerate(users, 1):
 
             if user_idx == 1:
-
-                LOG.info(
-                    '> Country: %s. Language: %s. Total users: %s. Min stars: %s',
-                    country, language, total_users, min_stars)
-
-                if totals_only:
-                    break
+                LOG.info('      Total users in `%s`: %s', country_name, total_users)
 
             user_login = user['login']
 
-            if user_login in users_seen:
-                continue
-
-            users_seen.append(user_login)
-
-            LOG.info('  User (%s/%s): %s ...', user_idx, total_users, user_login)
-
-            repos = []
-
-            for total_repos, repo in self.client.iter_repos(user_login, language, min_stars):
-                repo_name = repo['name']
-
-                LOG.debug('    Repository: %s ...', repo_name)
-
-                repos.append(Repository(
-                    name=repo_name,
-                    url=repo['html_url'],
-                    description=repo['description'],
-                    stars=repo['stargazers_count'],
-                ))
-
-            if repos:
-                yield User(type=user['type'], name=user_login, avatar=user['avatar_url'], repos=repos)
+            yield user_login, User(type=user['type'], name=user_login, avatar=user['avatar_url'], repos=[])

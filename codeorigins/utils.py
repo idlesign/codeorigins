@@ -132,6 +132,8 @@ def logtime(title):
     """Context manager logging elapsed time."""
     started = time()
 
+    LOG.info('%s ...', title)
+
     yield
 
     LOG.info('%s took %sm', title, round(int(time() - started) / 60, 1))

@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
++ Significant dumping speedup.
 * Minimum followers set to 10.
 * CLI now accepts --verbose flag.
 * Dump command now handles KeyboardInterrupt

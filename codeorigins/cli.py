@@ -13,14 +13,13 @@ if False:  # pragma: nocover
     from codeorigins.fetchers.base import Fetcher
 
 
-def fetcher_dump(fetcher_alias, credentials, into, country, language, totals_only):
+def fetcher_dump(fetcher_alias, credentials, into, country, language):
     fetcher = FETCHERS[fetcher_alias](credentials)  # type: Fetcher
 
     try:
         fetcher.run(
             languages=[language] if language else None,
-            countries=[country] if country else None,
-            totals_only=totals_only)
+            countries=[country] if country else None)
 
     except KeyboardInterrupt:
         click.confirm('Dump the data gathered so far?', default=False, abort=True)
@@ -41,14 +40,12 @@ def base(verbose):
     '--into', help='Directory to store dumps into.', type=click.Path(exists=True, file_okay=False))
 @click.option('--country', help='Country to dump.', type=click.Choice(COUNTRIES.keys()))
 @click.option('--language', help='Language to dump.', type=click.Choice(LANGUAGES.keys()))
-@click.option('--totals_only', help='Don\'t fetch stats. Only log total users.', is_flag=True)
 @click.pass_context
-def dump(ctx, into, country, language, totals_only):
+def dump(ctx, into, country, language):
     """Dumps statistics from GitHub using the given fetcher."""
     ctx.obj['into'] = into
     ctx.obj['country'] = country
     ctx.obj['language'] = language
-    ctx.obj['totals_only'] = totals_only
 
 
 @base.command()
@@ -70,10 +67,7 @@ def api(ctx, credentials):
 
     credentials = credentials.split(',', 1) if credentials else (None, None)
     ctx = ctx.obj
-    fetcher_dump(
-        'api', credentials, ctx['into'],
-        ctx['country'], ctx['language'],
-        totals_only=ctx['totals_only'])
+    fetcher_dump('api', credentials, ctx['into'], ctx['country'], ctx['language'])
 
 
 @base.command()
