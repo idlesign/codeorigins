@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
+* CLI now accepts --verbose flag.
 * Dump command now handles KeyboardInterrupt
 
 

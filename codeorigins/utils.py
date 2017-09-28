@@ -12,7 +12,14 @@ import jinja2
 
 LOG = logging.getLogger('codeorigins')
 
-logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+def configure_logging(level=logging.INFO):
+    """Configures logging.
+
+    :param level: Log level.
+
+    """
+    logging.basicConfig(level=level, format='%(levelname)s: %(message)s')
 
 
 def get_local_dump_dir():

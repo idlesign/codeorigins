@@ -1,7 +1,9 @@
+import logging
+
 import click
 
 from codeorigins import VERSION
-from codeorigins.utils import Dump
+from codeorigins.utils import Dump, configure_logging
 from codeorigins.composer import HtmlComposer
 from codeorigins.fetchers import FETCHERS
 from codeorigins.settings import COUNTRIES, LANGUAGES
@@ -28,8 +30,10 @@ def fetcher_dump(fetcher_alias, credentials, into, country, language, totals_onl
 
 @click.group()
 @click.version_option(version='.'.join(map(str, VERSION)))
-def base():
+@click.option('--verbose', help='Don\'t fetch stats. Only log total users.', is_flag=True)
+def base(verbose):
     """codeorigins command line utility."""
+    configure_logging(logging.DEBUG if verbose else logging.INFO)
 
 
 @base.group()
