@@ -2,6 +2,11 @@ codeorigins changelog
 =====================
 
 
+Unreleased
+----------
+* Dump command now handles KeyboardInterrupt
+
+
 v0.1.0
 ------
 + Basic functionality.

@@ -7,6 +7,9 @@ class Fetcher:
 
     name = None
 
+    def __init__(self):
+        self.results = {}
+
     def _gather(self, country, language, min_stars, min_followers, totals_only=False):
         raise NotImplementedError
 
@@ -25,7 +28,7 @@ class Fetcher:
         :rtype: dict
 
         """
-        results = {}
+        results = self.results
 
         languages = list(map(str.lower, languages or LANGUAGES.keys()))
         countries = list(map(str.lower, countries or COUNTRIES.keys()))
@@ -55,12 +58,8 @@ class Fetcher:
 
                             for country_name in COUNTRIES[country]['names']:
 
-                                users = self._gather(
-                                    country_name, language_name,
-                                    min_stars=min_stars,
-                                    min_followers=min_followers,
-                                    totals_only=totals_only)
+                                for user in self._gather(
+                                        country_name, language_name,
+                                        min_stars=min_stars, min_followers=min_followers, totals_only=totals_only):
 
-                                users and users_list.extend(users)
-
-        return results
+                                    users_list.append(user)

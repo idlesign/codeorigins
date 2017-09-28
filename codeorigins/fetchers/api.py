@@ -105,12 +105,11 @@ class ApiFetcher(Fetcher):
         """
         :param tuple client_credentials: Client ID and secret tuple.
         """
-
+        super().__init__()
         self.client = Client(client_credentials)
 
     def _gather(self, country, language, min_stars, min_followers, totals_only=False):
 
-        results = []
         users_seen = []
 
         users = self.client.iter_users(country, language, min_followers)
@@ -149,6 +148,5 @@ class ApiFetcher(Fetcher):
                     stars=repo['stargazers_count'],
                 ))
 
-            repos and results.append(User(type=user['type'], name=user_login, avatar=user['avatar_url'], repos=repos))
-
-        return results
+            if repos:
+                yield User(type=user['type'], name=user_login, avatar=user['avatar_url'], repos=repos)

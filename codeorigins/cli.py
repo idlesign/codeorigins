@@ -14,12 +14,16 @@ if False:  # pragma: nocover
 def fetcher_dump(fetcher_alias, credentials, into, country, language, totals_only):
     fetcher = FETCHERS[fetcher_alias](credentials)  # type: Fetcher
 
-    results = fetcher.run(
-        languages=[language] if language else None,
-        countries=[country] if country else None,
-        totals_only=totals_only)
+    try:
+        fetcher.run(
+            languages=[language] if language else None,
+            countries=[country] if country else None,
+            totals_only=totals_only)
 
-    Dump.write(results, dump_dir=into)
+    except KeyboardInterrupt:
+        click.confirm('Dump the data gathered so far?', default=False, abort=True)
+
+    Dump.write(fetcher.results, dump_dir=into)
 
 
 @click.group()
