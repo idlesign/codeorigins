@@ -51,8 +51,6 @@ class Client:
 
     def _request(self, url, params=None):
 
-        LOG.debug('Fetching %s ...', url)
-
         response = requests.get(url, params=params)
 
         links = response.links
