@@ -37,7 +37,7 @@ class Client:
             'followers': '>=%s' % followers,
             'repos': '>=%s' % repos,
 
-        }, sort=followers)
+        }, sort='followers')
 
     def iter_repos(self, user, language, stars):
 
