@@ -1,4 +1,5 @@
 from time import time, sleep
+from itertools import chain
 
 import requests
 
@@ -13,7 +14,7 @@ class Client:
     URL_BASE = 'https://api.github.com/search/'
 
     def __init__(self, credentials):
-        basic_params = {
+        common_params = {
             'per_page': 100,
         }
 
@@ -21,38 +22,74 @@ class Client:
         client_id, client_secret = credentials
 
         if client_id:
-            basic_params.update({
+            common_params.update({
                 'client_id': client_id,
                 'client_secret': client_secret,
             })
 
-        self.basic_params = basic_params
+        self.common_params = common_params
+
+    def _get_criterion_param(self, floor, ceil):
+        if floor != ceil:
+            return '%s..%s' % (floor, ceil)
+
+        return '>=%s' % ceil
 
     def iter_users(self, location, language, followers, repos=2):
 
-        yield from self._search('users', {
+        yield from self._request({
+            'realm': 'users',
+            'sort_by': 'followers',
+            'narrow_criterion': 'repos',
+            'narrow_value_ceil': repos,
+            'narrow_value_floor': repos,
+            'narrow_value_key': 'repos',
+            'query': {
+                'location': location,
+                'language': language,
+                'followers': '>=%s' % followers,
+            },
+        })
 
-            'location': location,
-            'language': language,
-            'followers': '>=%s' % followers,
-            'repos': '>=%s' % repos,
+    def iter_repos(self, language, stars):
 
-        }, sort='followers')
+        yield from self._request({
+            'realm': 'repositories',
+            'sort_by': 'stars',
+            'narrow_criterion': 'stars',
+            'narrow_value_ceil': stars,
+            'narrow_value_floor': stars,
+            'narrow_value_key': 'stargazers_count',
+            'query': {
+                'language': language,
+            },
+        })
 
-    def iter_repos(self, language, stars, user=None):
+    def _request(self, what, limit_bypass_params=None):
 
-        filter_dict = {
-            'language': language,
-            'stars': '>=%s' % stars,
-        }
-        if user:
-            filter_dict['user'] = user
+        if isinstance(what, str):
+            # Simple next page call.
+            response = requests.get(what)
 
-        yield from self._search('repositories', filter_dict, sort='stars')
+        else:
+            # New API call or a limit bypass call.
+            params = dict(sort=what['sort_by'])
+            params.update(self.common_params)
 
-    def _request(self, url, params=None):
+            query = '+'.join(
+                '%s:%s' % (key, val) for key, val in list(chain(
+                    what['query'].items(),
+                    [(what['narrow_criterion'], self._get_criterion_param(
+                        what['narrow_value_floor'], what['narrow_value_ceil']
+                    ))]
+                )))
 
-        response = requests.get(url, params=params)
+            limit_bypass_params = what
+
+            if 'items_seen_total' not in what:
+                what['items_seen_total'] = 0
+
+            response = requests.get(self.URL_BASE + what['realm'] + '?q=' + query, params=params)
 
         links = response.links
         url_next = links.get('next', {'url': None})['url']
@@ -79,20 +116,32 @@ class Client:
         items = data.get('items', [])
         items_total = data.get('total_count', 0)
 
+        if 'items_total' not in limit_bypass_params:
+            limit_bypass_params['items_total'] = items_total
+
         for item in items:
+            value = item.get(limit_bypass_params['narrow_value_key'])
+
+            if value:
+                limit_bypass_params['narrow_value_ceil'] = value
+
+            limit_bypass_params['items_seen_total'] += 1
+
             yield items_total, item
 
         if url_next:
-            yield from self._request(url_next)
+            # More pages.
+            LOG.debug('    Trying to get results from the next API page ...')
+            yield from self._request(url_next, limit_bypass_params=limit_bypass_params)
 
-    def _search(self, what, query, sort):
+        elif limit_bypass_params['items_seen_total'] < limit_bypass_params['items_total']:
+            # Bypass API limit.
 
-        params = dict(sort=sort)
-        params.update(self.basic_params)
+            LOG.info(
+                '      %s items to be processed yet ...',
+                limit_bypass_params['items_total'] - limit_bypass_params['items_seen_total'], )
 
-        url = self.URL_BASE + what + '?q=' + '+'.join('%s:%s' % (key, val) for key, val in query.items())
-
-        yield from self._request(url, params=params)
+            yield from self._request(limit_bypass_params)
 
 
 class ApiFetcher(Fetcher):

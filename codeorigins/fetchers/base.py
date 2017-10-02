@@ -54,7 +54,10 @@ class Fetcher:
                 with logtime('  Scanning `%s` repos. Min stars: %s' % (language, min_stars)):
 
                     for user_login, repo in self._gather_repos(language_name, min_stars):
-                        repos[user_login].append(repo)
+                        user_repos = repos[user_login]
+
+                        if repo not in user_repos:  # May double due to API limit bypass.
+                            repos[user_login].append(repo)
 
                 with logtime('  Scanning `%s` users.  Min followers: %s' % (language, min_followers)):
 
@@ -73,5 +76,6 @@ class Fetcher:
                                     user_repos = repos.get(user_login, [])
 
                                     if user_repos:
-                                        user.repos.extend(user_repos)
-                                        users_list.append(user)
+                                        if user not in users_list:  # May double due to API limit bypass.
+                                            user.repos.extend(user_repos)
+                                            users_list.append(user)
