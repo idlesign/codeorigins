@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
++ New languages: Ruby, Objective-C, Swift, Shell, PHP, JavaScript
 + Store metadata in dumps
 + Automatic stars adjustment
 + Significant dumping speedup.

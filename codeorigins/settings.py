@@ -6,6 +6,24 @@ LANGUAGES = sortdict({
     'py': {
         'name': 'Python',
     },
+    'ruby': {
+        'name': 'Ruby',
+    },
+    'objc': {
+        'name': 'Objective-C',
+    },
+    'swift': {
+        'name': 'Swift',
+    },
+    'shell': {
+        'name': 'Shell',
+    },
+    'php': {
+        'name': 'PHP',
+    },
+    'js': {
+        'name': 'JavaScript',
+    },
     'go': {
         'name': 'Go',
     },
