@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
++ Store metadata in dumps
 + Automatic stars adjustment
 + Significant dumping speedup.
 * Minimum followers set to 10.
