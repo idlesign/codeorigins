@@ -103,3 +103,4 @@ Requirements
 * Python 3
 * click
 * Jinja2
+* requests
