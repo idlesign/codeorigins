@@ -21,8 +21,8 @@ class Fetcher:
     def run(self, languages=None, countries=None):
         """Fetches data from GitHub.
 
-        Returns a dictionary indexed by country alias (iso code),
-        where values are lists of Users.
+        Stores a dictionary indexed by country alias (iso code),
+        where values are lists of Users into ``self.results``.
 
         :param list languages: Filter. Language aliases .
 
@@ -65,17 +65,21 @@ class Fetcher:
                         if country not in countries:
                             continue
 
-                        country_dict = results.setdefault(country, {})
-                        users_list = country_dict.setdefault(language, [])
+                        users = {}
 
                         with logtime('    Scanning `%s` country users' % country):
 
                             for country_name in COUNTRIES[country]['names']:
 
                                 for user_login, user in self._gather_users(country_name, language_name, min_followers):
-                                    user_repos = repos.get(user_login, [])
+                                    users.setdefault(user_login, user)
 
-                                    if user_repos:
-                                        if user not in users_list:  # May double due to API limit bypass.
-                                            user.repos.extend(user_repos)
-                                            users_list.append(user)
+                            country_dict = results.setdefault(country, {})
+                            users_list = country_dict.setdefault(language, [])
+
+                            for user_login, user in users.items():
+                                user_repos = repos.get(user_login, [])
+
+                                if user_repos:
+                                    user.repos.extend(user_repos)
+                                    users_list.append(user)
