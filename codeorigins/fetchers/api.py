@@ -167,9 +167,6 @@ class ApiFetcher(Fetcher):
         def get_totals(totals, stars):
             nonlocal increasing, decreasing
 
-            if stars <= STARS_MIN:
-                return totals, stars
-
             for total_repos, _ in self.client.iter_repos(language_name, stars):
                 totals = total_repos
                 break
@@ -177,12 +174,22 @@ class ApiFetcher(Fetcher):
             if totals > REPOS_BASE and not decreasing:
                 LOG.debug('  Too many repos `%s`. Adding stars ...', totals)
                 increasing = True
-                totals, stars = get_totals(totals, stars+stars_step)
+                stars_next = stars + stars_step
+
+                if stars_next <= STARS_MIN:
+                    return totals, STARS_MIN
+
+                totals, stars = get_totals(totals, stars_next)
 
             elif totals < REPOS_BASE and not increasing:
                 LOG.debug('  Too few repos `%s`. Removing stars ...', totals)
                 decreasing = True
-                totals, stars = get_totals(totals, stars-stars_step)
+                stars_next = stars - stars_step
+
+                if stars_next <= STARS_MIN:
+                    return totals, STARS_MIN
+
+                totals, stars = get_totals(totals, stars_next)
 
             return totals, stars
 
