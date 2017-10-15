@@ -1,7 +1,7 @@
 from collections import defaultdict
 
-from ..settings import COUNTRIES, LANGUAGES, MIN_STARS, MIN_FOLLOWERS
-from ..utils import logtime, LOG
+from ..settings import COUNTRIES, LANGUAGES, MIN_FOLLOWERS
+from ..utils import logtime, LOG, get_datetime_string
 
 
 class Fetcher:
@@ -11,6 +11,9 @@ class Fetcher:
 
     def __init__(self):
         self.results = {}
+
+    def _adjust_min_stars(self, language_name):
+        raise NotImplementedError
 
     def _gather_repos(self, language_name, min_stars):
         raise NotImplementedError
@@ -49,7 +52,9 @@ class Fetcher:
                 language_meta = LANGUAGES[language]
                 language_name = language_meta['name']
 
-                min_stars = language_meta.get('min_stars') or MIN_STARS
+                LOG.info('  Adjusting `%s` min stars count ...', language_name)
+                min_stars = self._adjust_min_stars(language_name)
+                LOG.info('  Stars minimum set to %s', min_stars)
 
                 with logtime('  Scanning `%s` repos. Min stars: %s' % (language, min_stars)):
 
@@ -75,7 +80,13 @@ class Fetcher:
                                     users.setdefault(user_login, user)
 
                             country_dict = results.setdefault(country, {})
-                            users_list = country_dict.setdefault(language, [])
+                            lang_meta = country_dict.setdefault(language, {
+                                'dt': get_datetime_string(),
+                                'min_followers': min_followers,
+                                'min_stars': min_stars,
+                                'users': []
+                            })
+                            users_list = lang_meta['users']
 
                             for user_login, user in users.items():
                                 user_repos = repos.get(user_login, [])

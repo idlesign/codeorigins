@@ -3,14 +3,22 @@ import logging
 import os
 from collections import OrderedDict, defaultdict
 from contextlib import contextmanager
+from datetime import datetime, timezone
 from operator import attrgetter
 from os import makedirs, path, getcwd, chdir
 from time import time
 
 import jinja2
 
-
 LOG = logging.getLogger('codeorigins')
+
+
+def get_datetime_string():
+    """Returns string with current date and time.
+
+    :rtype: str
+    """
+    return datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')
 
 
 def configure_logging(level=logging.INFO):
@@ -101,7 +109,7 @@ class Dump:
 
         stars_getter = attrgetter('stars')
 
-        results = defaultdict(lambda: defaultdict(list))
+        results = defaultdict(dict)
 
         for dump_fpath in get_dir_items(dump_dir, os.path.isfile):
             name, ext = splitext(basename(dump_fpath))
@@ -112,9 +120,11 @@ class Dump:
             country, _, language = name.partition('_')
 
             with open(dump_fpath) as f:
-                data = json.load(f)
+                language_data = json.load(f)
 
-            for user_data in data:
+            users = []
+
+            for user_data in language_data['users']:
 
                 user = User(*user_data)
                 user = user._replace(
@@ -122,7 +132,11 @@ class Dump:
                         list(map(lambda repo: Repository(*repo), user.repos)),
                         key=stars_getter, reverse=True))
 
-                results[language][country].append(user)
+                users.append(user)
+
+            language_data['users'] = users
+
+            results[language][country] = language_data
 
         return results
 

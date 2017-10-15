@@ -20,7 +20,6 @@ LANGUAGES = sortdict({
     },
     'lisp': {
         'name': 'Lisp',
-        'min_stars': 10,
     },
 
 })
@@ -87,6 +86,14 @@ MIN_FOLLOWERS = 10
 """Default minimum followers count for users."""
 
 
-MIN_STARS = 20
-"""Default minimum stars count for repositories."""
+STARS_BASE = 25
+"""Stars count for repositories to star with."""
+
+
+STARS_MIN = 15
+"""Minimal number of stars."""
+
+
+REPOS_BASE = 30000
+"""Base repository number for a language to adjust stars count."""
 

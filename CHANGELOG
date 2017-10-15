@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
++ Automatic stars adjustment
 + Significant dumping speedup.
 * Minimum followers set to 10.
 * CLI now accepts --verbose flag.

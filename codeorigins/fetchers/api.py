@@ -6,6 +6,7 @@ import requests
 from ..utils import LOG
 from .base import Fetcher
 from ..common import User, Repository
+from ..settings import REPOS_BASE, STARS_BASE, STARS_MIN
 
 
 class Client:
@@ -155,6 +156,39 @@ class ApiFetcher(Fetcher):
         """
         super().__init__()
         self.client = Client(client_credentials)
+
+    def _adjust_min_stars(self, language_name):
+
+        stars_step = 4
+
+        increasing = False
+        decreasing = False
+
+        def get_totals(totals, stars):
+            nonlocal increasing, decreasing
+
+            if stars <= STARS_MIN:
+                return totals, stars
+
+            for total_repos, _ in self.client.iter_repos(language_name, stars):
+                totals = total_repos
+                break
+
+            if totals > REPOS_BASE and not decreasing:
+                LOG.debug('  Too many repos `%s`. Adding stars ...', totals)
+                increasing = True
+                totals, stars = get_totals(totals, stars+stars_step)
+
+            elif totals < REPOS_BASE and not increasing:
+                LOG.debug('  Too few repos `%s`. Removing stars ...', totals)
+                decreasing = True
+                totals, stars = get_totals(totals, stars-stars_step)
+
+            return totals, stars
+
+        _, min_stars = get_totals(0, STARS_BASE)
+
+        return min_stars
 
     def _gather_repos(self, language_name, min_stars):
 

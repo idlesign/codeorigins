@@ -1,10 +1,9 @@
 from collections import defaultdict, OrderedDict
-from datetime import datetime, timezone
 from operator import itemgetter
 from os import makedirs, path, getcwd
 
 from .settings import COUNTRIES, LANGUAGES
-from .utils import Renderer, LOG
+from .utils import Renderer, LOG, get_datetime_string
 
 
 class HtmlComposer:
@@ -32,7 +31,7 @@ class HtmlComposer:
         LOG.info('Generating HTML in %s ...', target_dir)
 
         data = self.data
-        compilation_date = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')
+        compilation_date = get_datetime_string()
 
         def sort_by_stars(what):
             """
@@ -61,9 +60,9 @@ class HtmlComposer:
             ctx_repos = []
             ctx_countries = defaultdict(int)
 
-            for country, users in countries.items():
+            for country, lang_meta in countries.items():
 
-                for user in users:
+                for user in lang_meta['users']:
 
                     user_stars = 0
 
@@ -99,6 +98,10 @@ class HtmlComposer:
                 'countries': sort_by_stars(ctx_countries),
                 'max_users': self.max_users,
                 'max_repos': self.max_repos,
+                'dt_gathered': lang_meta['dt'],
+                'min_followers': lang_meta['min_followers'],
+                'min_stars': lang_meta['min_stars'],
+
             }), target_filename=target_filename)
 
         LOG.info('  Creating index file ...')
