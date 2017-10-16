@@ -6,6 +6,9 @@ LANGUAGES = sortdict({
     'py': {
         'name': 'Python',
     },
+    'asm': {
+        'name': 'Assembly',
+    },
     'ruby': {
         'name': 'Ruby',
     },
