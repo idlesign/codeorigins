@@ -211,6 +211,7 @@ class ApiFetcher(Fetcher):
                 url=repo['html_url'],
                 description=repo['description'],
                 stars=repo['stargazers_count'],
+                language=repo['language'],
             )
 
     def _gather_users(self, country_name, language_name, min_followers):

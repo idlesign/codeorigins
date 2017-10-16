@@ -2,6 +2,11 @@ codeorigins changelog
 =====================
 
 
+Unreleased
+----------
+* Fixed wrong language repos.
+
+
 v0.2.0
 ------
 + New languages: Ruby, Objective-C, Swift, Shell, PHP, JavaScript

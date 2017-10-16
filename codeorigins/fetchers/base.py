@@ -51,12 +51,15 @@ class Fetcher:
 
                 language_meta = LANGUAGES[language]
                 language_name = language_meta['name']
+                language_lower = language_name.lower()
 
-                LOG.info('  Adjusting `%s` min stars count ...', language_name)
+                LOG.info('  Adjusting `%s` min stars count ...', language)
                 min_stars = self._adjust_min_stars(language_name)
-                LOG.info('  Stars minimum set to %s', min_stars)
 
-                with logtime('  Scanning `%s` repos. Min stars: %s' % (language, min_stars)):
+                LOG.info('  Stars minimum is set to %s', min_stars)
+                LOG.info('  Followers minimum is set to %s', min_followers)
+
+                with logtime('  Scanning `%s` repos' % language):
 
                     for user_login, repo in self._gather_repos(language_name, min_stars):
                         user_repos = repos[user_login]
@@ -64,7 +67,7 @@ class Fetcher:
                         if repo not in user_repos:  # May double due to API limit bypass.
                             repos[user_login].append(repo)
 
-                with logtime('  Scanning `%s` users.  Min followers: %s' % (language, min_followers)):
+                with logtime('  Scanning `%s` users' % language):
 
                     for country in COUNTRIES:
                         if country not in countries:
@@ -92,5 +95,12 @@ class Fetcher:
                                 user_repos = repos.get(user_login, [])
 
                                 if user_repos:
-                                    user.repos.extend(user_repos)
+                                    # Additional filtering by language is required
+                                    # since we fetched all user repositories.
+
+                                    # Lowered matching for cases similar to 'Lisp' -> 'Common Lisp'
+                                    user.repos.extend(
+                                        repo for repo in user_repos if
+                                        repo.language and language_lower in repo.language.lower())
+
                                     users_list.append(user)
