@@ -4,6 +4,7 @@ codeorigins changelog
 
 Unreleased
 ----------
+* Fixed sometimes missing country checkboxes.
 * Fixed wrong language repos.
 
 

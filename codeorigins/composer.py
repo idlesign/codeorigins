@@ -101,6 +101,7 @@ class HtmlComposer:
                 'dt_gathered': lang_meta['dt'],
                 'min_followers': lang_meta['min_followers'],
                 'min_stars': lang_meta['min_stars'],
+                'show_country_checkboxes': True,
 
             }), target_filename=target_filename)
 
