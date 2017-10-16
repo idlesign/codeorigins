@@ -2,8 +2,8 @@ codeorigins changelog
 =====================
 
 
-Unreleased
-----------
+v0.3.0
+------
 + Added assembly language.
 * Fixed sometimes missing country checkboxes.
 * Fixed wrong language repos.
