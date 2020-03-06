@@ -63,7 +63,7 @@ class Dump:
                 if not users:
                     continue
 
-                filepath = '%s/%s_%s.json' % (dump_dir, country.lower(), language.lower())
+                filepath = f'{dump_dir}/{country.lower()}_{language.lower()}.json'
                 makedirs(path.dirname(filepath), exist_ok=True)
 
                 with open(filepath, 'w') as f:
@@ -146,11 +146,11 @@ def logtime(title):
     """Context manager logging elapsed time."""
     started = time()
 
-    LOG.info('%s ...', title)
+    LOG.info(f'{title} ...')
 
     yield
 
-    LOG.info('%s took %sm', title, round(int(time() - started) / 60, 1))
+    LOG.info(f'{title} took {round(int(time() - started) / 60, 1)}m')
 
 
 class Renderer:

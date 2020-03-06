@@ -28,7 +28,7 @@ class HtmlComposer:
             target_dir = path.join(getcwd(), 'docs')
             makedirs(target_dir, exist_ok=True)
 
-        LOG.info('Generating HTML in %s ...', target_dir)
+        LOG.info(f'Generating HTML in {target_dir} ...')
 
         data = self.data
         compilation_date = get_datetime_string()
@@ -87,9 +87,9 @@ class HtmlComposer:
                         'info': user,
                     })
 
-            target_filename = 'page_%s.html' % language
+            target_filename = f'page_{language}.html'
 
-            LOG.info('  Writing %s ...', target_filename)
+            LOG.info(f'  Writing {target_filename} ...')
 
             Renderer.render_to_directory('page.html', target_dir, add_common_context({
                 'subtitle': LANGUAGES[language]['name'],

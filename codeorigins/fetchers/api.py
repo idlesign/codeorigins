@@ -31,10 +31,11 @@ class Client:
         self.common_params = common_params
 
     def _get_criterion_param(self, floor, ceil):
-        if floor != ceil:
-            return '%s..%s' % (floor, ceil)
 
-        return '>=%s' % ceil
+        if floor != ceil:
+            return f'{floor}..{ceil}'
+
+        return f'>={ceil}'
 
     def iter_users(self, location, language, followers, repos=2):
 
@@ -48,7 +49,7 @@ class Client:
             'query': {
                 'location': location,
                 'language': language,
-                'followers': '>=%s' % followers,
+                'followers': f'>={followers}',
             },
         })
 
@@ -78,7 +79,7 @@ class Client:
             params.update(self.common_params)
 
             query = '+'.join(
-                '%s:%s' % (key, val) for key, val in list(chain(
+                f'{key}:{val}' for key, val in list(chain(
                     what['query'].items(),
                     [(what['narrow_criterion'], self._get_criterion_param(
                         what['narrow_value_floor'], what['narrow_value_ceil']
@@ -106,12 +107,17 @@ class Client:
 
             if sleep_time > 0:
                 sleep_time += 1  # Just to be sure...
-                LOG.warning('! Time to sleep for %ss ...', sleep_time)
+                LOG.warning(f'! Time to sleep for {sleep_time}s ...')
                 sleep(sleep_time)
 
         if response.status_code == 403:
             # This should have been never happen.
-            raise Exception(response.json()['message'])
+            raise Exception(
+                f"{response.json()['message']}. "
+                f"Rate limit: {rate_limit}. "
+                f"Remain: {rate_remain}. "
+                f"Reset: {rate_reset}. "
+            )
 
         data = response.json()
         items = data.get('items', [])
@@ -139,8 +145,8 @@ class Client:
             # Bypass API limit.
 
             LOG.info(
-                '      %s items to be processed yet ...',
-                limit_bypass_params['items_total'] - limit_bypass_params['items_seen_total'], )
+                f"      {limit_bypass_params['items_total'] - limit_bypass_params['items_seen_total']} "
+                "items to be processed yet ...",)
 
             yield from self._request(limit_bypass_params)
 
@@ -172,7 +178,7 @@ class ApiFetcher(Fetcher):
                 break
 
             if totals > REPOS_BASE and not decreasing:
-                LOG.debug('  Too many repos `%s`. Adding stars ...', totals)
+                LOG.debug(f'  Too many repos `{totals}`. Adding stars ...')
                 increasing = True
                 stars_next = stars + stars_step
 
@@ -182,7 +188,7 @@ class ApiFetcher(Fetcher):
                 totals, stars = get_totals(totals, stars_next)
 
             elif totals < REPOS_BASE and not increasing:
-                LOG.debug('  Too few repos `%s`. Removing stars ...', totals)
+                LOG.debug(f'  Too few repos `{totals}`. Removing stars ...')
                 decreasing = True
                 stars_next = stars - stars_step
 
@@ -204,7 +210,7 @@ class ApiFetcher(Fetcher):
         for repo_idx, (total_repos, repo) in enumerate(languages, 1):
 
             if repo_idx == 1:
-                LOG.info('    Total repos: %s', total_repos)
+                LOG.info(f'    Total repos: {total_repos}')
 
             yield repo['owner']['login'], Repository(
                 name=repo['name'],
@@ -221,7 +227,7 @@ class ApiFetcher(Fetcher):
         for user_idx, (total_users, user) in enumerate(users, 1):
 
             if user_idx == 1:
-                LOG.info('      Total users in `%s`: %s', country_name, total_users)
+                LOG.info(f'      Total users in `{country_name}`: {total_users}')
 
             user_login = user['login']
 

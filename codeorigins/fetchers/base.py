@@ -53,13 +53,13 @@ class Fetcher:
                 language_name = language_meta['name']
                 language_lower = language_name.lower()
 
-                LOG.info('  Adjusting `%s` min stars count ...', language)
+                LOG.info(f'  Adjusting `{language}` min stars count ...')
                 min_stars = self._adjust_min_stars(language_name)
 
-                LOG.info('  Stars minimum is set to %s', min_stars)
-                LOG.info('  Followers minimum is set to %s', min_followers)
+                LOG.info(f'  Stars minimum is set to {min_stars}')
+                LOG.info(f'  Followers minimum is set to {min_followers}')
 
-                with logtime('  Scanning `%s` repos' % language):
+                with logtime(f'  Scanning `{language}` repos'):
 
                     for user_login, repo in self._gather_repos(language_name, min_stars):
                         user_repos = repos[user_login]
@@ -67,7 +67,7 @@ class Fetcher:
                         if repo not in user_repos:  # May double due to API limit bypass.
                             repos[user_login].append(repo)
 
-                with logtime('  Scanning `%s` users' % language):
+                with logtime(f'  Scanning `{language}` users'):
 
                     for country in COUNTRIES:
                         if country not in countries:
@@ -75,7 +75,7 @@ class Fetcher:
 
                         users = {}
 
-                        with logtime('    Scanning `%s` country users' % country):
+                        with logtime(f'    Scanning `{country}` country users'):
 
                             for country_name in COUNTRIES[country]['names']:
 
