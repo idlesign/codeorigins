@@ -5,6 +5,7 @@ codeorigins changelog
 Unreleased
 ----------
 * Fixed rate limit obedience.
+* Python 3.6 is now minimum.
 
 
 v0.3.0
