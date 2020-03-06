@@ -31,6 +31,7 @@ setup(
     zip_safe=False,
 
     install_requires=[
+        'requests',
         'click',
         'Jinja2',
     ],
