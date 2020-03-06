@@ -2,6 +2,11 @@ codeorigins changelog
 =====================
 
 
+Unreleased
+----------
+* Fixed rate limit obedience.
+
+
 v0.3.0
 ------
 + Added assembly language.

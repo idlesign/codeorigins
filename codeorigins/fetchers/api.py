@@ -101,7 +101,7 @@ class Client:
             response.headers['x-ratelimit-remaining'],
             response.headers['x-ratelimit-reset']))
 
-        if rate_remain == 0:
+        if rate_remain == 1:
             # Time to sleep before the next request.
             sleep_time = rate_reset - int(time())
 
