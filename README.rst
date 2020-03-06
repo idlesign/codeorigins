@@ -2,11 +2,13 @@ codeorigins
 ===========
 https://github.com/idlesign/codeorigins
 
-|python|
+|python| |release|
 
 .. |python| image:: http://forthebadge.com/images/badges/made-with-python.svg
     :target: https://www.python.org
 
+.. |release| image:: https://img.shields.io/pypi/v/codeorigins.svg
+    :target: https://pypi.python.org/pypi/codeorigins
 
 
 Description
@@ -38,10 +40,10 @@ FAQ
 
   1. Fork repository;
   2. Git pull forked repository into local directory;
-  3. ``cd`` to the directory;
-  4. ``pip install -e .`` (``sudo`` may be required) -
+  3. ``$ cd`` to the directory;
+  4. ``$ pip install -e .`` (``sudo`` may be required) -
      this will made ``codeorigins`` CLI available;
-  5. Use ``codeorigins dump`` (see below) without ``--into`` -
+  5. Use ``$ codeorigins dump`` (see below) without ``--into`` -
      this puts dumps into ``codeorigins/dump/``;
   6. Commit and push added/changed dumps;
   7. Create a pull request on your GitHub repository page.
@@ -66,7 +68,7 @@ Using rate-limited GitHub search API:
 
 .. code-block:: bash
 
-    > codeorigins dump --into /home/idle/ghdump --country ru --language Python api
+    $ codeorigins dump --into /home/idle/ghdump --country ru --language Python api
 
 This will use ``api`` to fetch repositories data for users located in ``Russia`` whose primary language is ``Python``
 and dump it into ``/home/idle/ghdump``.
@@ -82,7 +84,7 @@ Use ``make_html`` command to read data from dumps and compose HTML:
 
 .. code-block:: bash
 
-    > codeorigins make_html --dump_dir /home/idle/ghdump
+    $ codeorigins make_html --dump_dir /home/idle/ghdump
 
 This will create HTML file in current working directory.
 
@@ -94,13 +96,13 @@ See supported countries and languages using the following command:
 
 .. code-block:: bash
 
-    > codeorigins show_settings
+    $ codeorigins show_settings
 
 
 Requirements
 ------------
 
-* Python 3
+* Python 3.6+
 * click
 * Jinja2
 * requests
