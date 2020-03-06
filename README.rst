@@ -71,7 +71,7 @@ Using rate-limited GitHub search API:
 This will use ``api`` to fetch repositories data for users located in ``Russia`` whose primary language is ``Python``
 and dump it into ``/home/idle/ghdump``.
 
-Register OAuth Application (https://github.com/settings/applications/) and use its *Client ID* and
+Register OAuth Application (https://github.com/settings/developers) and use its *Client ID* and
 *Client Secret* to loosen the rate limits (append ``--credentials <id>,<secret>`` to dump command).
 
 
