@@ -2,8 +2,8 @@ codeorigins changelog
 =====================
 
 
-Unreleased
-----------
+v0.3.1 [2020-03-07]
+-------------------
 * Fixed rate limit obedience.
 * Python 3.6 is now minimum.
 
